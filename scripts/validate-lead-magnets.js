@@ -210,6 +210,7 @@ function validateFrontmatter(frontmatter, result) {
 
   // ERROR: Required fields for lead magnets
   const required = [
+    'content_id',
     'title',
     'description',
     'category',
