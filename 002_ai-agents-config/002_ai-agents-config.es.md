@@ -1,4 +1,5 @@
 ---
+content_id: lead-magnets-ai-agents-config
 title: Paquete de Configuración de Agentes IA
 description: Agentes de Claude Code listos para usar en tareas comunes de desarrollo. Cópialos a tu carpeta de agentes y empieza a usarlos inmediatamente.
 category: ai-agents

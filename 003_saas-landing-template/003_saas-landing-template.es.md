@@ -1,4 +1,5 @@
 ---
+content_id: lead-magnets-saas-landing-template
 title: Plantilla de Landing Page SaaS
 description: Una plantilla Next.js 16 lista para produccion que puedes personalizar completamente con solo 3 prompts de IA. Bilingue, modo oscuro, lista para Supabase, despliega en 20 minutos.
 category: templates

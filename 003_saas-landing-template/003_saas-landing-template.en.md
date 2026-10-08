@@ -1,4 +1,5 @@
 ---
+content_id: lead-magnets-saas-landing-template
 title: SaaS Landing Page Template
 description: A production-ready Next.js 16 landing page template you can fully customize with just 3 AI prompts. Bilingual, dark mode, Supabase-ready, deploy in 20 minutes.
 category: templates

@@ -1,4 +1,5 @@
 ---
+content_id: lead-magnets-ai-agents-config
 title: AI Agents Configuration Pack
 description: Ready-to-use Claude Code agents for common development tasks. Drop them in your agents folder and start using them immediately.
 category: ai-agents
