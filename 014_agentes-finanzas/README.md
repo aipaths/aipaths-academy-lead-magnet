@@ -16,7 +16,7 @@ Dos agentes de Claude Code que **cargan los gastos de un CSV del banco en una ho
 ├── apps-script/
 │   ├── Code.gs                            la "puerta": una web app con token que escribe en tu hoja
 │   └── Resumen.gs                         arma la pestaña Resumen (3 bloques con selector, tabla y gráfico)
-├── datos/                                 acá van tus CSV
+├── datos/                                 Gastos-ejemplo.csv (inventado, para probar) y tus CSV
 ├── .env.local.example                     las 3 variables que necesita el sistema (archivo oculto)
 └── .gitignore                             para que tus variables y tus CSV no se suban nunca a git
 ```
@@ -24,7 +24,7 @@ Dos agentes de Claude Code que **cargan los gastos de un CSV del banco en una ho
 ## Cómo usarlo
 
 1. **Descomprimí este ZIP en una carpeta que se llame `finanzas`.** Es la carpeta de trabajo: los prompts la nombran así.
-2. **Antes de arrancar:** una hoja de Google vacía (con tu sesión abierta en Chrome), Chrome con la extensión **Claude in Chrome**, y tu CSV del banco en `datos/`.
+2. **Antes de arrancar:** una hoja de Google vacía (con tu sesión abierta en Chrome), Chrome con la extensión **Claude in Chrome**, y un CSV en `datos/`: el tuyo, o el `Gastos-ejemplo.csv` que ya viene en el ZIP para probar.
 3. App de Claude → pestaña **Code** → **Local** → la carpeta `finanzas`. Modo **Manual**, para ver cada permiso.
 4. Abrí `prompts/prompts-crear-agentes-desde-0.md` y pegá los prompts **en orden**, uno por tarea. Lo que va entre `[corchetes]` lo completás vos.
 5. Cada prompt termina con un "FINAL DE LA TAREA N": una lista que Claude verifica punto por punto. Si no escribió "TAREA N LISTA", no pases a la siguiente.
@@ -53,7 +53,8 @@ Los agentes leen estas variables dentro del mismo comando (`set -a; . ./.env.loc
 ## Cuidado con tus datos
 
 - Tu CSV tiene movimientos reales. **Limpialo antes de cargarlo**: el agente manda el archivo entero a tu hoja y no puede anonimizar nombres ni cuentas.
-- `datos/*.csv` está en el `.gitignore`: tus extractos no se suben a git.
+- `datos/*.csv` está en el `.gitignore`: tus extractos no se suben a git. La única excepción es `Gastos-ejemplo.csv`, que es **inventado** (nada real) y viene para probar.
+- Si cargás tus datos reales, sacá el de ejemplo de `datos/`: si no, el agente te pregunta cuál cargar y los dos quedan mezclados en la hoja.
 - Nada de esto se conecta a tu banco: trabaja con el CSV que vos descargás.
 - La dirección de la puerta es pública y sólo la protege el token. Cuando termines de usar el sistema: Implementar → Administrar implementaciones → archivar.
 

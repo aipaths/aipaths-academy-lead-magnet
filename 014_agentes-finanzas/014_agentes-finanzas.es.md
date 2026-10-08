@@ -27,7 +27,7 @@ coverImage: "/images/resources/014_agentes-finanzas/thumb.png"
 order: 14
 lastUpdated: "2026-10-08"
 author: "AIPaths Academy"
-downloadSize: "156 KB"
+downloadSize: "161 KB"
 estimatedSetupTime: "1 hora"
 
 # Prerequisites
@@ -35,7 +35,7 @@ prerequisites:
   - Una cuenta de Claude de pago, con la app de escritorio (pestaña Code)
   - Chrome con la extensión Claude in Chrome
   - Una cuenta de Google (Google Sheets y Apps Script son gratis)
-  - Un CSV con los movimientos de tu banco, limpio de nombres y cuentas
+  - Un CSV con los movimientos de tu banco, limpio de nombres y cuentas (o usás el de ejemplo, que viene en el ZIP)
 
 # Files included
 files:
@@ -46,7 +46,7 @@ files:
   - path: apps-script/
     description: El código de la hoja - la puerta con token y la pestaña Resumen con sus 3 gráficos
   - path: datos/
-    description: La carpeta donde dejás tu CSV
+    description: La carpeta donde dejás tu CSV, con un CSV de ejemplo inventado para probar sin tus datos
   - path: README.md
     description: Cómo usarlo, las tres variables que necesita y qué cuidar con tus datos
 ---
@@ -63,6 +63,7 @@ Este kit arma ese sistema con dos agentes de Claude Code. El primero carga el CS
 - **Dos agentes listos para usar** — `carga-gastos` y `revisor-de-gastos`, en la carpeta `agents/`.
 - **El código de la hoja** — Apps Script con una puerta protegida por token y la pestaña Resumen con tres bloques: selector, mini tabla y gráfico.
 - **Tres capturas de referencia** de cómo tienen que verse los gráficos.
+- **Un CSV de ejemplo inventado** — 398 movimientos ficticios con el formato de la exportación de Monzo, para probar todo sin usar tus datos.
 - **Una tabla para decidir qué automatizar después**, con cinco preguntas de sí o no.
 
 ## Cómo funciona
@@ -76,7 +77,7 @@ Este kit arma ese sistema con dos agentes de Claude Code. El primero carga el CS
 
 ## Antes de usarlo con tus datos reales
 
-Tu CSV tiene movimientos reales. Limpialo antes de cargarlo: el agente manda el archivo entero a tu hoja y no puede anonimizar nombres ni cuentas. Nada de esto se conecta a tu banco: trabaja con el CSV que vos descargás.
+Tu CSV tiene movimientos reales. Limpialo antes de cargarlo: el agente manda el archivo entero a tu hoja y no puede anonimizar nombres ni cuentas. Nada de esto se conecta a tu banco: trabaja con el CSV que vos descargás. Si querés probar primero, en `datos/` viene `Gastos-ejemplo.csv`, inventado de punta a punta. Cuando pases a tus datos, sacalo de esa carpeta para que no se mezclen en la hoja.
 
 La puerta es una dirección pública que protege solo un token. El token vive en `.env.local` y en las propiedades del script, nunca dentro del código. Cuando termines de usar el sistema, archivá la implementación.
 

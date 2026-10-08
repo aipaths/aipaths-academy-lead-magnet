@@ -1,3 +1,4 @@
 .env.local
 datos/*.csv
+!datos/Gastos-ejemplo.csv
 .DS_Store
