@@ -15,25 +15,25 @@ Lead magnets are free, downloadable resources that provide immediate value to ou
 
 ```
 AIPaths_Academy_Lead_Magnets/
-├── 001_ai-starter-pack/          # AI Development Starter Pack
-│   ├── 001_ai-starter-pack.en.md # English landing page
-│   ├── 001_ai-starter-pack.es.md # Spanish landing page
-│   ├── README.md                  # Setup instructions
-│   ├── .cursor/                   # Cursor configuration
-│   ├── .continue/                 # Continue extension config
-│   └── mcp-configs/               # MCP server configs
-├── 002_ai-agents-config/          # AI Agents Configuration Pack
+├── 002_ai-agents-config/          # AI Agents Configuration Pack (legacy: EN + ES)
 │   ├── 002_ai-agents-config.en.md
 │   ├── 002_ai-agents-config.es.md
 │   ├── README.md
 │   └── agents/                    # Sample agent configs
+├── 014_agentes-finanzas/          # Agentes para tus gastos (Spanish only)
+│   ├── 014_agentes-finanzas.es.md # Landing page (not included in the ZIP)
+│   ├── README.md                  # Setup instructions (included in the ZIP)
+│   ├── agents/                    # Payload: ready-to-use agents
+│   ├── apps-script/               # Payload
+│   ├── prompts/                   # Payload
+│   └── datos/                     # Payload
 └── README.md                      # This file
 ```
 
 ## Naming Conventions
 
-- Folders: `XXX_kebab-case-name/` (e.g., `001_ai-starter-pack/`)
-- Landing pages: `XXX_slug.{locale}.md` (e.g., `001_ai-starter-pack.es.md`)
+- Folders: `XXX_kebab-case-name/` (e.g., `014_agentes-finanzas/`)
+- Landing pages: `XXX_slug.{locale}.md` (e.g., `014_agentes-finanzas.es.md`)
 - Locale codes: `en` (English, legacy/optional), `es` (Spanish, required)
 
 ## Frontmatter Structure
@@ -42,6 +42,7 @@ Each landing page includes metadata:
 
 ```yaml
 ---
+content_id: lead-magnets-your-slug
 title: Lead Magnet Title
 description: Brief description
 category: category-name
@@ -55,7 +56,7 @@ lastUpdated: 'YYYY-MM-DD'
 author: AIPaths Academy
 downloadSize: 'X.X MB'
 estimatedSetupTime: 'X minutes'
-coverImage: /images/resources/XXX_slug.png
+coverImage: /images/resources/XXX_slug/thumb.png
 prerequisites:
   - Requirement 1
   - Requirement 2
@@ -64,6 +65,10 @@ files:
     description: What's inside
 ---
 ```
+
+`content_id` is required (the validator fails without it): `lead-magnets-` plus the
+kebab-case name without the number, e.g. `lead-magnets-agentes-finanzas`. It is the
+same in the `.es.md` and in the legacy `.en.md` of a resource.
 
 ## Three Rules That Are Easy to Break
 
