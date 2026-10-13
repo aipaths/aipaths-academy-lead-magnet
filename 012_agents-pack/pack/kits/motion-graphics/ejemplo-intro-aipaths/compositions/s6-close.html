@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+        }
+        .s6-scene {
+          flex-direction: column;
+          justify-content: center;
+          align-items: flex-start;
+          gap: 36px;
+        }
+        .s6-word {
+          display: flex;
+          font-family: var(--display);
+          font-weight: 900;
+          font-size: 240px;
+          line-height: 0.9;
+          letter-spacing: -0.055em;
+          color: var(--fg);
+        }
+        .s6-frag {
+          display: inline-block;
+          opacity: 0;
+          will-change: transform;
+        }
+        .s6-dot {
+          display: inline-block;
+          color: var(--signal);
+          margin-left: 0.04em;
+          will-change: transform;
+          transform-origin: 50% 85%;
+        }
+        .s6-line {
+          display: flex;
+          align-items: center;
+          gap: 32px;
+        }
+        .s6-rule {
+          display: block;
+          width: 120px;
+          height: 6px;
+          background: var(--fg);
+          transform-origin: 0% 50%;
+        }
+        .s6-tagline {
+          display: block;
+          font-family: var(--display);
+          font-weight: 400;
+          font-size: 56px;
+          color: var(--muted);
+          letter-spacing: -0.02em;
+          opacity: 0;
+        }
+        .s6-credit {
+          display: block;
+          font-family: var(--mono);
+          font-size: 24px;
+          color: var(--dim);
+          letter-spacing: 0.06em;
+          opacity: 0;
+        }
+      </style>
+      <div
+        id="root"
+        data-composition-id="s6-close"
+        data-width="1920"
+        data-height="1080"
+      >
+        <div id="s6-all" class="scene s6-scene">
+          <div class="s6-word">
+            <span id="s6-a" class="s6-frag">AI</span
+            ><span id="s6-b" class="s6-frag">Paths</span
+            ><span id="s6-dot" class="s6-dot">.</span>
+          </div>
+          <div class="s6-line">
+            <span id="s6-rule" class="s6-rule"></span>
+            <span id="s6-tagline" class="s6-tagline">Motion con código.</span>
+          </div>
+          <span id="s6-credit" class="s6-credit"
+            >HECHO CON CLAUDE CODE + HYPERFRAMES</span
+          >
+        </div>
+      </div>
+      <script>
+        const tl = gsap.timeline({ paused: true });
+        const F = 1 / 60;
+
+        // Wordmark: split final word into fragments (waterfall-entry climax).
+        [
+          ["#s6-a", 0.25, 80, 0.2],
+          ["#s6-b", 0.25 + 0.2 - F, 80, 0.2],
+          ["#s6-tagline", 0.8, 40, 0.15],
+          ["#s6-credit", 0.95, 30, 0.12],
+        ].forEach(([sel, at, dy, dur]) => {
+          tl.set(sel, { opacity: 1, y: dy }, at);
+          tl.to(sel, { y: 0, duration: dur, ease: "power4.out" }, at);
+        });
+
+        // The signal dot pops last — the one color hit of the close.
+        tl.fromTo(
+          "#s6-dot",
+          { scale: 0, opacity: 0 },
+          { scale: 1, opacity: 1, duration: 0.35, ease: "power3.out" },
+          0.62,
+        );
+        tl.fromTo(
+          "#s6-rule",
+          { scaleX: 0 },
+          { scaleX: 1, duration: 0.4, ease: "power3.out" },
+          0.75,
+        );
+
+        // Final scene only: fade the lockup to the background.
+        tl.to(
+          "#s6-all",
+          { opacity: 0, duration: 0.35, ease: "power2.in" },
+          1.6,
+        );
+
+        window.__timelines["s6-close"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

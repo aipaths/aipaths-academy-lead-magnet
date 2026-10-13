@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+        }
+        /* Persistent chrome — production metadata on the edges */
+        .chrome {
+          position: absolute;
+          inset: 0;
+          padding: 56px 120px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          font-family: var(--mono);
+          font-size: 22px;
+          letter-spacing: 0.04em;
+          color: var(--dim);
+          font-variant-numeric: tabular-nums;
+        }
+        .chrome-row {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+        .chrome-brand {
+          color: var(--muted);
+          font-weight: 700;
+        }
+        .chrome-rec {
+          display: flex;
+          align-items: center;
+          gap: 14px;
+        }
+        .chrome-dot {
+          display: block;
+          width: 14px;
+          height: 14px;
+          border-radius: 50%;
+          background: var(--signal);
+        }
+        .chrome-rule {
+          position: absolute;
+          left: 120px;
+          right: 120px;
+          height: 2px;
+          background: var(--line);
+        }
+        .chrome-rule.top {
+          top: 104px;
+          transform-origin: 0% 50%;
+        }
+        .chrome-rule.bottom {
+          bottom: 104px;
+          transform-origin: 100% 50%;
+        }
+      </style>
+      <div
+        id="root"
+        data-composition-id="chrome"
+        data-width="1920"
+        data-height="1080"
+      >
+        <div id="chrome-all" class="chrome">
+          <div class="chrome-row">
+            <span class="chrome-brand">AIPATHS · MOTION LAB</span>
+            <span>HYPERFRAMES 0.8 · 1920×1080 · 30 FPS</span>
+          </div>
+          <div class="chrome-row">
+            <span class="chrome-rec"
+              ><span id="chrome-dot" class="chrome-dot"></span
+              ><span id="tc">00:00:00:00</span></span
+            >
+            <span>RENDER DETERMINISTA · SIN EDICIÓN</span>
+          </div>
+          <div id="chrome-top" class="chrome-rule top"></div>
+          <div id="chrome-bottom" class="chrome-rule bottom"></div>
+        </div>
+      </div>
+      <script>
+        const tl = gsap.timeline({ paused: true });
+
+        // Hairlines draw in from opposite edges.
+        tl.fromTo(
+          "#chrome-top",
+          { scaleX: 0 },
+          { scaleX: 1, duration: 0.7, ease: "power3.out" },
+          0.05,
+        );
+        tl.fromTo(
+          "#chrome-bottom",
+          { scaleX: 0 },
+          { scaleX: 1, duration: 0.7, ease: "power3.out" },
+          0.05,
+        );
+
+        // SMPTE timecode (HH:MM:SS:FF at 30 fps) + REC dot blink, one clock.
+        const tc = document.getElementById("tc");
+        const dot = document.getElementById("chrome-dot");
+        const pad = (n) => String(n).padStart(2, "0");
+        const clock = { t: 0 };
+        let lastF = -1;
+        const paint = () => {
+          const f = Math.floor(clock.t * 30 + 1e-6);
+          dot.style.opacity = clock.t % 1 < 0.6 ? 1 : 0.25;
+          if (f === lastF) return;
+          lastF = f;
+          const s = Math.floor(f / 30);
+          tc.textContent = "00:00:" + pad(s) + ":" + pad(f % 30);
+        };
+        paint();
+        tl.to(clock, { t: 20, duration: 20, ease: "none", onUpdate: paint }, 0);
+
+        // Fade out with the close.
+        tl.to(
+          "#chrome-all",
+          { opacity: 0, duration: 0.35, ease: "power2.in" },
+          19.6,
+        );
+
+        window.__timelines["chrome"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

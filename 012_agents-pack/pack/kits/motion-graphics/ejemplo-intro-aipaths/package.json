@@ -1,0 +1,11 @@
+{
+  "name": "intro-aipaths",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "setup": "mkdir -p assets/audio && node scripts/synth-bed.ts assets/audio/bed.wav && bash scripts/traer-sfx.sh",
+    "dev": "npx --yes hyperframes@0.8.150 preview",
+    "check": "npx --yes hyperframes@0.8.150 check",
+    "render": "npx --yes hyperframes@0.8.150 render"
+  }
+}

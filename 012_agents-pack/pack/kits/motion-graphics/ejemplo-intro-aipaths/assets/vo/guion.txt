@@ -1,0 +1,4 @@
+Este video no se editó. Se programó.
+Claude escribe el HTML: cada elemento dice cuándo entra y cuánto dura.
+Chrome congela cada instante, freim por freim, y ffmpeg los une en un video.
+Antes de renderizar, todo se revisa solo.

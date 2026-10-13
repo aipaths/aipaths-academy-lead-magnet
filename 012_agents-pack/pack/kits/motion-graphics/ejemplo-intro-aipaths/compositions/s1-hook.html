@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+        }
+        .s1-scene {
+          flex-direction: column;
+          justify-content: center;
+          gap: 48px;
+        }
+        .s1-tag {
+          display: block;
+          font-family: var(--mono);
+          font-size: 24px;
+          letter-spacing: 0.08em;
+          color: var(--dim);
+          font-variant-numeric: tabular-nums;
+          opacity: 0;
+        }
+        .s1-lines {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px;
+        }
+        .s1-line {
+          display: block;
+          font-family: var(--display);
+          font-weight: 900;
+          font-size: 168px;
+          line-height: 0.95;
+          letter-spacing: -0.045em;
+          opacity: 0;
+          will-change: transform;
+        }
+        .s1-muted {
+          color: var(--dim);
+        }
+        .s1-strong {
+          color: var(--fg);
+        }
+        .s1-rule {
+          display: block;
+          width: 860px;
+          height: 10px;
+          background: var(--signal);
+          margin-top: 18px;
+          transform-origin: 0% 50%;
+        }
+      </style>
+      <div
+        id="root"
+        data-composition-id="s1-hook"
+        data-width="1920"
+        data-height="1080"
+      >
+        <div class="scene s1-scene">
+          <span id="s1-tag" class="s1-tag">// frame 0001 · t = 0.000 s</span>
+          <div class="s1-lines">
+            <span id="s1-l1" class="s1-line s1-muted">Este video</span>
+            <span id="s1-l2" class="s1-line s1-muted">no se editó.</span>
+            <span id="s1-l3" class="s1-line s1-strong">Se programó.</span>
+            <span id="s1-rule" class="s1-rule"></span>
+          </div>
+        </div>
+      </div>
+      <script>
+        const tl = gsap.timeline({ paused: true });
+        const F = 1 / 60;
+
+        // waterfall-entry: binary reveal + whip up; the payoff line lands last and heaviest.
+        [
+          ["#s1-tag", 0.1, 30, 0.12],
+          ["#s1-l1", 0.22, 60, 0.18],
+          ["#s1-l2", 0.22 + 0.18 + 2 * F, 60, 0.18],
+          ["#s1-l3", 0.95, 90, 0.22],
+        ].forEach(([sel, at, dy, dur]) => {
+          tl.set(sel, { opacity: 1, y: dy }, at);
+          tl.to(sel, { y: 0, duration: dur, ease: "power4.out" }, at);
+        });
+
+        // Signal rule draws under the payoff line.
+        tl.fromTo(
+          "#s1-rule",
+          { scaleX: 0 },
+          { scaleX: 1, duration: 0.45, ease: "power3.out" },
+          1.2,
+        );
+
+        // Live frame counter: the tag reads the frame actually being rendered.
+        const tag = document.getElementById("s1-tag");
+        const clock = { t: 0 };
+        let last = -1;
+        const paint = () => {
+          const f = Math.floor(clock.t * 30 + 1e-6) + 1;
+          if (f === last) return;
+          last = f;
+          tag.textContent =
+            "// frame " +
+            String(f).padStart(4, "0") +
+            " · t = " +
+            ((f - 1) / 30).toFixed(3) +
+            " s";
+        };
+        tl.to(
+          clock,
+          { t: 3.5, duration: 3.5, ease: "none", onUpdate: paint },
+          0,
+        );
+
+        window.__timelines["s1-hook"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

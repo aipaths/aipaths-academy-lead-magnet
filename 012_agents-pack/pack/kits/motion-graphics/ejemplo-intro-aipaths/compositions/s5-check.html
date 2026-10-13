@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+        }
+        .s5-scene {
+          align-items: center;
+          justify-content: space-between;
+          gap: 80px;
+        }
+        .s5-copy {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 40px;
+          width: 600px;
+        }
+        .s5-in {
+          opacity: 0;
+          will-change: transform;
+        }
+        .s5-list {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          width: 1000px;
+        }
+        .s5-rule {
+          display: block;
+          width: 100%;
+          height: 3px;
+          background: var(--line);
+          transform-origin: 0% 50%;
+        }
+        .s5-row {
+          display: flex;
+          align-items: center;
+          gap: 40px;
+          padding: 40px 0;
+        }
+        .s5-cmd {
+          font-family: var(--mono);
+          font-size: 44px;
+          font-weight: 700;
+          color: var(--fg);
+          width: 260px;
+        }
+        .s5-desc {
+          flex: 1;
+          font-family: var(--display);
+          font-size: 32px;
+          color: var(--muted);
+        }
+        .s5-status {
+          position: relative;
+          width: 150px;
+          height: 48px;
+        }
+        .s5-run,
+        .s5-pass {
+          position: absolute;
+          right: 0;
+          top: 0;
+          height: 48px;
+          display: flex;
+          align-items: center;
+          gap: 14px;
+          font-family: var(--mono);
+          font-size: 26px;
+          font-weight: 700;
+        }
+        .s5-run {
+          color: var(--dim);
+        }
+        .s5-pass {
+          color: var(--signal);
+          opacity: 0;
+        }
+        .s5-tick {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          border: 3px solid var(--signal);
+          font-size: 26px;
+          will-change: transform;
+        }
+      </style>
+      <div
+        id="root"
+        data-composition-id="s5-check"
+        data-width="1920"
+        data-height="1080"
+      >
+        <div class="scene s5-scene">
+          <div class="s5-copy">
+            <div id="s5-kicker" class="kicker s5-in">
+              <span class="kicker-num">04</span>EL CHEQUEO
+            </div>
+            <h2 id="s5-head" class="headline s5-in">Se revisa solo</h2>
+            <p id="s5-body" class="body s5-in">
+              Antes de renderizar, la máquina busca lo que el ojo se saltea.
+            </p>
+          </div>
+          <div id="s5-list" class="s5-list"></div>
+        </div>
+      </div>
+      <script>
+        const tl = gsap.timeline({ paused: true });
+        const F = 1 / 60;
+
+        const CHECKS = [
+          ["lint", "Estructura y reglas"],
+          ["check", "Errores, layout y contraste"],
+          ["snapshot", "Frames clave para mirar"],
+        ];
+
+        // Build rows from data: rule, then row, closing rule at the end.
+        const list = document.getElementById("s5-list");
+        const RULES = [];
+        const ROWS = [];
+        const addRule = () => {
+          const r = document.createElement("span");
+          r.className = "s5-rule";
+          list.appendChild(r);
+          RULES.push(r);
+        };
+        addRule();
+        CHECKS.forEach(([cmd, desc]) => {
+          const row = document.createElement("div");
+          row.className = "s5-row s5-in";
+          row.innerHTML =
+            '<span class="s5-cmd">' +
+            cmd +
+            "</span>" +
+            '<span class="s5-desc">' +
+            desc +
+            "</span>" +
+            '<span class="s5-status">' +
+            '<span class="s5-run">···</span>' +
+            '<span class="s5-pass"><span class="s5-tick">✓</span>PASS</span>' +
+            "</span>";
+          list.appendChild(row);
+          ROWS.push(row);
+          addRule();
+        });
+
+        // Copy cascade (waterfall-entry).
+        [
+          ["#s5-kicker", 0.2, 30, 0.13],
+          ["#s5-head", 0.3, 70, 0.2],
+          ["#s5-body", 0.52, 40, 0.15],
+        ].forEach(([sel, at, dy, dur]) => {
+          tl.set(sel, { opacity: 1, y: dy }, at);
+          tl.to(sel, { y: 0, duration: dur, ease: "power4.out" }, at);
+        });
+
+        // Table rules draw, rows whip in on the same wave.
+        RULES.forEach((r, i) => {
+          tl.fromTo(
+            r,
+            { scaleX: 0 },
+            { scaleX: 1, duration: 0.4, ease: "power3.out" },
+            0.35 + i * 0.08,
+          );
+        });
+        ROWS.forEach((row, i) => {
+          const at = 0.45 + i * (0.15 - F);
+          tl.set(row, { opacity: 1, y: 40 }, at);
+          tl.to(row, { y: 0, duration: 0.15, ease: "power4.out" }, at);
+        });
+
+        // Checks resolve one after another: "···" → ✓ PASS (spring-pop on the tick).
+        ROWS.forEach((row, i) => {
+          const at = 1.05 + i * 0.4;
+          tl.set(row.querySelector(".s5-run"), { opacity: 0 }, at);
+          tl.set(row.querySelector(".s5-pass"), { opacity: 1 }, at);
+          tl.fromTo(
+            row.querySelector(".s5-tick"),
+            { scale: 0 },
+            { scale: 1, duration: 0.3, ease: "power3.out" },
+            at,
+          );
+        });
+
+        window.__timelines["s5-check"] = tl;
+      </script>
+    </template>
+  </body>
+</html>
