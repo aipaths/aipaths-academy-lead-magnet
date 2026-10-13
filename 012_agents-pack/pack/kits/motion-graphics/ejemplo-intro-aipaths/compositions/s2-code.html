@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+        }
+        .s2-scene {
+          align-items: center;
+          justify-content: space-between;
+          gap: 80px;
+        }
+        .s2-copy {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 40px;
+          width: 700px;
+        }
+        .s2-in {
+          opacity: 0;
+          will-change: transform;
+        }
+        .s2-window {
+          width: 940px;
+          background: var(--surface);
+          border: 3px solid var(--line);
+          border-radius: 18px;
+          overflow: hidden;
+          will-change: transform;
+        }
+        .s2-bar {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          padding: 22px 28px;
+          background: var(--surface-2);
+          border-bottom: 3px solid var(--line);
+        }
+        .s2-dot {
+          display: block;
+          width: 16px;
+          height: 16px;
+          border-radius: 50%;
+          background: var(--line);
+        }
+        .s2-file {
+          margin-left: 18px;
+          font-family: var(--mono);
+          font-size: 22px;
+          color: var(--muted);
+        }
+        .s2-code {
+          padding: 36px 40px 44px;
+          font-family: var(--mono);
+          font-size: 30px;
+          line-height: 1.6;
+          color: var(--muted);
+        }
+        .s2-ln {
+          position: relative;
+          display: flex;
+          gap: 32px;
+          min-height: 48px;
+        }
+        .s2-hlbar {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: -40px;
+          right: -40px;
+          background: rgba(90, 212, 138, 0.14);
+          transform-origin: 0% 50%;
+        }
+        .s2-num {
+          position: relative;
+          color: var(--dim);
+          width: 36px;
+          text-align: right;
+        }
+        .s2-txt {
+          position: relative;
+          white-space: pre;
+        }
+        .s2-tag {
+          color: var(--fg);
+        }
+        .s2-attr {
+          color: var(--signal);
+          font-weight: 700;
+        }
+        .s2-str {
+          color: var(--fg);
+        }
+        .s2-cursor {
+          display: inline-block;
+          width: 16px;
+          height: 34px;
+          margin-left: 2px;
+          vertical-align: -5px;
+          background: var(--fg);
+        }
+      </style>
+      <div
+        id="root"
+        data-composition-id="s2-code"
+        data-width="1920"
+        data-height="1080"
+      >
+        <div class="scene s2-scene">
+          <div class="s2-copy">
+            <div id="s2-kicker" class="kicker s2-in">
+              <span class="kicker-num">01</span>EL CÓDIGO
+            </div>
+            <h2 id="s2-head" class="headline s2-in">Claude escribe HTML</h2>
+            <p id="s2-body" class="body s2-in">
+              Cada elemento dice cuándo entra y cuánto dura.
+            </p>
+          </div>
+          <div id="s2-window" class="s2-window">
+            <div class="s2-bar">
+              <span class="s2-dot"></span><span class="s2-dot"></span
+              ><span class="s2-dot"></span>
+              <span class="s2-file">index.html</span>
+            </div>
+            <div id="s2-code" class="s2-code"></div>
+          </div>
+        </div>
+      </div>
+      <script>
+        const tl = gsap.timeline({ paused: true });
+
+        // Code lines as data so formatters can't touch indentation.
+        // Each line: [indent, [[cls, text], ...], highlighted?]
+        const S2_LINES = [
+          [
+            0,
+            [
+              ["s2-tag", "<h1"],
+              ["", " class="],
+              ["s2-str", '"clip"'],
+            ],
+          ],
+          [
+            4,
+            [
+              ["s2-attr", "data-start"],
+              ["", "="],
+              ["s2-str", '"3"'],
+            ],
+            true,
+          ],
+          [
+            4,
+            [
+              ["s2-attr", "data-duration"],
+              ["", "="],
+              ["s2-str", '"4"'],
+              ["s2-tag", ">"],
+            ],
+            true,
+          ],
+          [2, [["", "Claude escribe HTML"]]],
+          [0, [["s2-tag", "</h1>"]]],
+          [0, []],
+          [
+            0,
+            [
+              ["", "tl."],
+              ["s2-attr", "fromTo"],
+              ["", "("],
+              ["s2-str", '"h1"'],
+              ["", ","],
+            ],
+          ],
+          [2, [["", "{ opacity: 0, y: 40 },"]]],
+          [
+            2,
+            [
+              ["", "{ opacity: 1, y: 0 }, "],
+              ["s2-attr", "3"],
+              ["", ");"],
+            ],
+          ],
+        ];
+
+        // Build rows; each token keeps its full text and is "typed" by slicing it.
+        const host = document.getElementById("s2-code");
+        const TOKENS = [];
+        const LINE_END = [];
+        const HL_BARS = [];
+        let total = 0;
+        S2_LINES.forEach((line, i) => {
+          const row = document.createElement("div");
+          row.className = "s2-ln";
+          if (line[2]) {
+            const bar = document.createElement("span");
+            bar.className = "s2-hlbar";
+            row.appendChild(bar);
+            HL_BARS.push(bar);
+          }
+          const num = document.createElement("span");
+          num.className = "s2-num";
+          num.textContent = String(i + 1);
+          const code = document.createElement("span");
+          code.className = "s2-txt";
+          [["", " ".repeat(line[0])]].concat(line[1]).forEach(([cls, text]) => {
+            const el = document.createElement("span");
+            if (cls) el.className = cls;
+            TOKENS.push({ el, text, from: total });
+            total += text.length;
+            code.appendChild(el);
+          });
+          LINE_END.push({ code, end: total });
+          row.appendChild(num);
+          row.appendChild(code);
+          host.appendChild(row);
+        });
+        const cursor = document.createElement("span");
+        cursor.className = "s2-cursor";
+
+        // Copy cascade (waterfall-entry) + window pop (spring-pop-entrance, no overshoot).
+        [
+          ["#s2-kicker", 0.2, 30, 0.13],
+          ["#s2-head", 0.3, 70, 0.2],
+          ["#s2-body", 0.52, 40, 0.15],
+        ].forEach(([sel, at, dy, dur]) => {
+          tl.set(sel, { opacity: 1, y: dy }, at);
+          tl.to(sel, { y: 0, duration: dur, ease: "power4.out" }, at);
+        });
+        tl.fromTo(
+          "#s2-window",
+          { opacity: 0, scale: 0.94, y: 24 },
+          { opacity: 1, scale: 1, y: 0, duration: 0.45, ease: "power3.out" },
+          0.3,
+        );
+
+        // One driver for typing + cursor: every frame is a pure function of clock.t.
+        const TYPE_AT = 0.75;
+        const TYPE_DUR = 2.2;
+        const clock = { t: 0 };
+        let lastN = -1;
+        const paint = () => {
+          const p = Math.min(1, Math.max(0, (clock.t - TYPE_AT) / TYPE_DUR));
+          const n = Math.floor(p * total);
+          if (n !== lastN) {
+            lastN = n;
+            TOKENS.forEach((tok) => {
+              const k = Math.max(0, Math.min(tok.text.length, n - tok.from));
+              tok.el.textContent = tok.text.slice(0, k);
+            });
+            const line =
+              LINE_END.find((l) => n < l.end) || LINE_END[LINE_END.length - 1];
+            line.code.appendChild(cursor);
+          }
+          const typing = clock.t >= TYPE_AT && p < 1;
+          const blinkOn = clock.t % 0.6 < 0.3;
+          cursor.style.opacity = clock.t < 0.6 ? 0 : typing || blinkOn ? 1 : 0;
+        };
+        paint();
+        tl.to(
+          clock,
+          { t: 4.5, duration: 4.5, ease: "none", onUpdate: paint },
+          0,
+        );
+
+        // Highlight the timing attributes once they're typed.
+        HL_BARS.forEach((bar, i) => {
+          tl.fromTo(
+            bar,
+            { scaleX: 0 },
+            { scaleX: 1, duration: 0.4, ease: "power3.out" },
+            TYPE_AT + TYPE_DUR + 0.1 + i * 0.1,
+          );
+        });
+
+        window.__timelines["s2-code"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

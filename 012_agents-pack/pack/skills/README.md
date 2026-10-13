@@ -1,6 +1,6 @@
 # Skills
 
-Tres skills portables. Cada una es una carpeta con un `SKILL.md` y, si hace falta,
+Diez skills portables. Cada una es una carpeta con un `SKILL.md` y, si hace falta,
 una carpeta `references/`.
 
 ## Instalar
@@ -17,7 +17,7 @@ ln -s "$PWD/release" ~/.agents/skills/release
 
 Symlink mejor que copia: editás una vez y todos los harnesses ven el mismo archivo.
 
-## Las nueve
+## Las diez
 
 ### Sueltas — andan solas, sin configurar nada
 
@@ -29,8 +29,13 @@ Symlink mejor que copia: editás una vez y todos los harnesses ven el mismo arch
 | `preparar-pr` | "preparar el PR", "abrir un pull request", "esto está listo para review" |
 | `release` | "hacer un release", "deploy", "publicar versión" |
 | `token-audit` | "mi agente gasta mucho", "optimizar contexto", "reducir tokens" |
+| `motion-director` | "armá un motion", "intro animada", "video con código" |
 
 `prompt-builder` usa la carpeta `prompts/` de este pack como librería.
+
+`motion-director` dirige; el motor (HyperFrames u otro de código a video) hace el render
+con sus propias skills. El paso a paso completo y un proyecto de ejemplo están en
+`kits/motion-graphics/`.
 
 ### La cola de tareas — las tres funcionan juntas
 

@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+        }
+        .s3-scene {
+          flex-direction: column;
+          justify-content: space-between;
+        }
+        .s3-top {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-end;
+        }
+        .s3-copy {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 36px;
+        }
+        .s3-in {
+          opacity: 0;
+          will-change: transform;
+        }
+        .s3-hl {
+          display: block;
+        }
+        .s3-readout {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          gap: 8px;
+          font-family: var(--mono);
+          font-variant-numeric: tabular-nums;
+        }
+        .s3-fn {
+          font-size: 28px;
+          color: var(--signal);
+          font-weight: 700;
+        }
+        .s3-frame-num {
+          font-size: 84px;
+          font-weight: 700;
+          color: var(--fg);
+          letter-spacing: -0.02em;
+        }
+        .s3-t {
+          font-size: 32px;
+          color: var(--muted);
+        }
+        .s3-strip-wrap {
+          position: relative;
+        }
+        .s3-strip {
+          display: flex;
+          gap: 20px;
+          padding: 26px 0;
+          border-top: 3px solid var(--line);
+          border-bottom: 3px solid var(--line);
+        }
+        .s3-cell {
+          position: relative;
+          flex: 1;
+          height: 150px;
+          background: var(--surface);
+          border: 3px solid var(--line);
+          border-radius: 10px;
+          overflow: hidden;
+          will-change: transform;
+        }
+        .s3-cell.is-past {
+          border-color: #4a5058;
+        }
+        .s3-cell.is-now {
+          border-color: var(--signal);
+          background: var(--surface-2);
+        }
+        .s3-flash {
+          position: absolute;
+          inset: 0;
+          background: var(--fg);
+          opacity: 0;
+        }
+        .s3-bar {
+          position: absolute;
+          left: 16px;
+          height: 12px;
+          border-radius: 6px;
+          background: var(--muted);
+        }
+        .s3-bar.a {
+          top: 34px;
+        }
+        .s3-bar.b {
+          top: 58px;
+          background: var(--dim);
+        }
+        .s3-mark {
+          position: absolute;
+          bottom: 22px;
+          width: 26px;
+          height: 26px;
+          border-radius: 50%;
+          background: var(--fg);
+        }
+        .s3-cap {
+          position: absolute;
+          right: 12px;
+          top: 8px;
+          font-family: var(--mono);
+          font-size: 18px;
+          color: var(--dim);
+        }
+        .s3-head {
+          position: absolute;
+          top: -18px;
+          bottom: -18px;
+          left: 0;
+          width: 4px;
+          background: var(--signal);
+          opacity: 0;
+        }
+        .s3-head-cap {
+          position: absolute;
+          top: -58px;
+          left: -30px;
+          width: 64px;
+          text-align: center;
+          font-family: var(--mono);
+          font-size: 20px;
+          font-weight: 700;
+          color: var(--bg);
+          background: var(--signal);
+          padding: 4px 0;
+        }
+      </style>
+      <div
+        id="root"
+        data-composition-id="s3-frames"
+        data-width="1920"
+        data-height="1080"
+      >
+        <div class="scene s3-scene">
+          <div class="s3-top">
+            <div class="s3-copy">
+              <div id="s3-kicker" class="kicker s3-in">
+                <span class="kicker-num">02</span>LOS FRAMES
+              </div>
+              <h2 class="headline">
+                <span id="s3-h1" class="s3-hl s3-in">Chrome congela</span>
+                <span id="s3-h2" class="s3-hl s3-in">cada instante</span>
+              </h2>
+              <p id="s3-body" class="body s3-in">
+                Por cada frame: calcula t, mueve la animación ahí y saca una
+                foto.
+              </p>
+            </div>
+            <div id="s3-readout" class="s3-readout s3-in">
+              <span class="s3-fn">timeline.seek(t)</span>
+              <span id="s3-frame" class="s3-frame-num">frame 0206</span>
+              <span id="s3-t" class="s3-t">t = 6.867 s</span>
+            </div>
+          </div>
+          <div class="s3-strip-wrap">
+            <div id="s3-strip" class="s3-strip"></div>
+            <div id="s3-head" class="s3-head" data-layout-allow-overflow>
+              <span class="s3-head-cap">seek</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script>
+        const tl = gsap.timeline({ paused: true });
+        const F = 1 / 60;
+
+        // Layout constants (CSS-matched): strip 1680px wide, 8 cells, 20px gap.
+        const N = 8;
+        const FIRST = 206;
+        const CELL_W = (1680 - (N - 1) * 20) / N;
+        const X = (k) => k * (CELL_W + 20) + CELL_W / 2 - 2;
+
+        // Build the filmstrip: a dot travelling across a mini frame.
+        const strip = document.getElementById("s3-strip");
+        const CELLS = [];
+        const FLASH = [];
+        for (let i = 0; i < N; i++) {
+          const p = i / (N - 1);
+          const cell = document.createElement("div");
+          cell.className = "s3-cell";
+          cell.innerHTML =
+            '<span class="s3-bar a" style="width:' +
+            Math.round(40 + p * 44) +
+            '%"></span>' +
+            '<span class="s3-bar b" style="width:' +
+            Math.round(30 + p * 30) +
+            '%"></span>' +
+            '<span class="s3-mark" style="left:' +
+            Math.round(8 + p * 74) +
+            '%"></span>' +
+            '<span class="s3-cap">' +
+            String(FIRST + i).padStart(4, "0") +
+            "</span>" +
+            '<span class="s3-flash"></span>';
+          strip.appendChild(cell);
+          CELLS.push(cell);
+          FLASH.push(cell.lastChild);
+        }
+
+        // Copy cascade (waterfall-entry).
+        [
+          ["#s3-kicker", 0.2, 30, 0.13],
+          ["#s3-h1", 0.28, 70, 0.19],
+          ["#s3-h2", 0.28 + 0.19 - F, 70, 0.19],
+          ["#s3-body", 0.62, 40, 0.15],
+          ["#s3-readout", 0.7, 40, 0.16],
+        ].forEach(([sel, at, dy, dur]) => {
+          tl.set(sel, { opacity: 1, y: dy }, at);
+          tl.to(sel, { y: 0, duration: dur, ease: "power4.out" }, at);
+        });
+
+        // Filmstrip arrives as one beat (spring-pop-entrance, capped stagger).
+        CELLS.forEach((cell, i) => {
+          tl.fromTo(
+            cell,
+            { opacity: 0, y: 30, scale: 0.92 },
+            { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "power3.out" },
+            0.55 + i * 0.045,
+          );
+        });
+
+        // Playhead (chart-scrub-readout, playhead form): ONE driver, stepped per frame.
+        // Each step = seek to the frame, then a capture flash. All state derives from s.p.
+        const head = document.getElementById("s3-head");
+        const frameEl = document.getElementById("s3-frame");
+        const tEl = document.getElementById("s3-t");
+        const STEP_AT = 1.2;
+        const STEP_DUR = 0.42;
+        const scrub = { p: 0 };
+        let lastIdx = -1;
+        const easeOut = (u) => 1 - Math.pow(1 - u, 3);
+        const paint = () => {
+          const i = Math.min(N - 1, Math.floor(scrub.p));
+          const u = Math.min(1, scrub.p - i);
+          const move = easeOut(Math.min(1, u / 0.3));
+          const x = i === 0 ? X(0) : X(i - 1) + (X(i) - X(i - 1)) * move;
+          head.style.transform = "translateX(" + x.toFixed(2) + "px)";
+          const flash = u < 0.3 ? 0 : Math.max(0, 1 - (u - 0.3) / 0.35) * 0.35;
+          CELLS.forEach((c, k) => {
+            c.classList.toggle("is-past", k < i);
+            c.classList.toggle("is-now", k === i && scrub.p > 0);
+            FLASH[k].style.opacity = k === i && scrub.p > 0 ? flash : 0;
+          });
+          if (i !== lastIdx) {
+            lastIdx = i;
+            const f = FIRST + i;
+            frameEl.textContent = "frame " + String(f).padStart(4, "0");
+            tEl.textContent = "t = " + (f / 30).toFixed(3) + " s";
+          }
+        };
+        paint();
+        tl.fromTo(
+          head,
+          { opacity: 0 },
+          { opacity: 1, duration: 0.2 },
+          STEP_AT - 0.2,
+        );
+        tl.to(
+          scrub,
+          { p: N, duration: N * STEP_DUR, ease: "none", onUpdate: paint },
+          STEP_AT,
+        );
+
+        window.__timelines["s3-frames"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

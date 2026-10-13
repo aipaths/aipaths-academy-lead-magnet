@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      /* AIPaths motion tokens — graphite, monochrome, one semantic signal color. */
+      :root {
+        --bg: #101113;
+        --surface: #17191c;
+        --surface-2: #1e2125;
+        --line: #2c3036;
+        --fg: #eceef0;
+        --muted: #9ba0a8;
+        --dim: #878c95;
+        --signal: #5ad48a;
+        --display: "Montserrat", sans-serif;
+        --mono: "JetBrains Mono", monospace;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: var(--bg);
+      }
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: var(--bg);
+        color: var(--fg);
+        font-family: var(--display);
+      }
+      [data-composition-id="main"] > div[data-composition-src] {
+        position: absolute;
+        inset: 0;
+      }
+
+      /* Shared scene vocabulary (used inside every sub-composition) */
+      .scene {
+        position: absolute;
+        inset: 0;
+        padding: 170px 120px 160px;
+        display: flex;
+      }
+      .kicker {
+        font-family: var(--mono);
+        font-size: 24px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        color: var(--muted);
+        display: flex;
+        align-items: center;
+        gap: 18px;
+      }
+      .kicker-num {
+        color: var(--bg);
+        background: var(--fg);
+        padding: 4px 12px;
+      }
+      .headline {
+        font-family: var(--display);
+        font-weight: 900;
+        font-size: 104px;
+        line-height: 0.98;
+        letter-spacing: -0.04em;
+        color: var(--fg);
+      }
+      .body {
+        font-family: var(--display);
+        font-weight: 400;
+        font-size: 36px;
+        line-height: 1.35;
+        color: var(--muted);
+        max-width: 680px;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      data-hf-id="hf-at0g"
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="20"
+      data-width="1920"
+      data-height="1080"
+    >
+      <div
+        data-hf-id="hf-tdli"
+        id="bg"
+        data-composition-id="bg"
+        data-composition-src="compositions/bg.html"
+        data-start="0"
+        data-duration="20"
+        data-track-index="0"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+
+      <div
+        data-hf-id="hf-iumj"
+        id="s1"
+        data-layout-allow-overflow
+        data-layout-allow-overlap
+        data-composition-id="s1-hook"
+        data-composition-src="compositions/s1-hook.html"
+        data-start="0"
+        data-duration="3.5"
+        data-track-index="1"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+      <div
+        data-hf-id="hf-9fxk"
+        id="s2"
+        data-layout-allow-overflow
+        data-layout-allow-overlap
+        data-composition-id="s2-code"
+        data-composition-src="compositions/s2-code.html"
+        data-start="3"
+        data-duration="4.5"
+        data-track-index="1"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+      <div
+        data-hf-id="hf-a3by"
+        id="s3"
+        data-layout-allow-overflow
+        data-layout-allow-overlap
+        data-composition-id="s3-frames"
+        data-composition-src="compositions/s3-frames.html"
+        data-start="7"
+        data-duration="5.5"
+        data-track-index="1"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+      <div
+        data-hf-id="hf-6ne9"
+        id="s4"
+        data-layout-allow-overflow
+        data-layout-allow-overlap
+        data-composition-id="s4-ffmpeg"
+        data-composition-src="compositions/s4-ffmpeg.html"
+        data-start="12"
+        data-duration="3.5"
+        data-track-index="1"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+      <div
+        data-hf-id="hf-gqph"
+        id="s5"
+        data-layout-allow-overflow
+        data-layout-allow-overlap
+        data-composition-id="s5-check"
+        data-composition-src="compositions/s5-check.html"
+        data-start="15"
+        data-duration="3.6"
+        data-track-index="1"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+      <div
+        data-hf-id="hf-t0se"
+        id="s6"
+        data-layout-allow-overflow
+        data-layout-allow-overlap
+        data-composition-id="s6-close"
+        data-composition-src="compositions/s6-close.html"
+        data-start="18"
+        data-duration="2"
+        data-track-index="1"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+
+      <div
+        data-hf-id="hf-mj3d"
+        id="chrome"
+        data-composition-id="chrome"
+        data-composition-src="compositions/chrome.html"
+        data-start="0"
+        data-duration="20"
+        data-track-index="2"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+      <div
+        id="audio-bed"
+        data-composition-id="audio-bed"
+        data-composition-src="compositions/audio-bed.html"
+        data-start="0"
+        data-duration="20"
+        data-track-index="9"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+      <div
+        id="audio-ui"
+        data-composition-id="audio-ui"
+        data-composition-src="compositions/audio-ui.html"
+        data-start="0"
+        data-duration="20"
+        data-track-index="8"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+      <div
+        id="audio-accents"
+        data-composition-id="audio-accents"
+        data-composition-src="compositions/audio-accents.html"
+        data-start="0"
+        data-duration="20"
+        data-track-index="7"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+
+      // Scene handoffs. Each slot overlaps the next by the transition length,
+      // and both scenes move at the same T — the motion IS the cut.
+      // Primary: push slide (the film advances left, like the filmstrip).
+      const PUSH = 0.5;
+      [
+        ["#s1", "#s2", 3],
+        ["#s2", "#s3", 7],
+        ["#s3", "#s4", 12],
+        ["#s4", "#s5", 15],
+      ].forEach(([out, inn, T]) => {
+        tl.fromTo(
+          out,
+          { x: 0 },
+          {
+            x: -1920,
+            duration: PUSH,
+            ease: "power3.inOut",
+            immediateRender: false,
+          },
+          T,
+        );
+        tl.fromTo(
+          inn,
+          { x: 1920 },
+          {
+            x: 0,
+            duration: PUSH,
+            ease: "power3.inOut",
+            immediateRender: false,
+          },
+          T,
+        );
+      });
+
+      // Accent for the close: blur crossfade — the system steps back, the brand stays.
+      const T6 = 18;
+      tl.fromTo(
+        "#s5",
+        { opacity: 1, filter: "blur(0px)", scale: 1 },
+        {
+          opacity: 0,
+          filter: "blur(12px)",
+          scale: 1.03,
+          duration: 0.6,
+          ease: "sine.inOut",
+          immediateRender: false,
+        },
+        T6,
+      );
+      tl.fromTo(
+        "#s6",
+        { opacity: 0, filter: "blur(12px)" },
+        {
+          opacity: 1,
+          filter: "blur(0px)",
+          duration: 0.6,
+          ease: "sine.inOut",
+          immediateRender: false,
+        },
+        T6,
+      );
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

@@ -4,11 +4,22 @@ Tres cosas listas para usar con cualquier agente de código (Claude Code, Codex,
 OpenClaw, Gemini CLI…): **agentes especialistas**, **skills** y una **librería de prompts**.
 
 Todo es markdown plano. No hay nada que instalar, nada que compilar, ningún runtime atado.
+La excepción son los `kits/`: proyectos reales de los videos, con su código.
+
+## ¿Venís de un video? Empezá acá
+
+Cada video que deja algo para llevarte tiene su carpeta en `kits/`, con un `LEEME.md` que
+arranca desde cero.
+
+| Video | Kit | Qué te llevás |
+|---|---|---|
+| Motion graphics con código | `kits/motion-graphics/` | la skill `motion-director`, el paso a paso y el proyecto de la intro |
 
 ```
 agentes/     8 especialistas + un pipeline de 3 + el template para armar el tuyo
-skills/      9 skills + una cola de tareas lista para montar
+skills/      10 skills + una cola de tareas lista para montar
 prompts/     114 prompts por dominio + el método para escribir los tuyos
+kits/        lo que se construye en los videos, listo para abrir y correr
 ```
 
 ## Empezar
@@ -62,9 +73,9 @@ idea → @planner → Todo → @dev → In Review → @reviewer → Done
 Más `director-generico` (el molde para armar uno de otra área) y `agentes/_template/`,
 el esqueleto vacío con los comentarios de qué va en cada archivo.
 
-### `skills/` — 9 skills
+### `skills/` — 10 skills
 
-Seis andan solas:
+Siete andan solas:
 
 | Skill | Cuándo dispara |
 |---|---|
@@ -74,6 +85,7 @@ Seis andan solas:
 | `preparar-pr` | dejar un PR listo para que alguien lo revise sin sufrir |
 | `release` | preparar y publicar un release, con rama según entorno |
 | `token-audit` | tu agente gasta demasiado y hay que reducir contexto |
+| `motion-director` | dirigir un motion graphics hecho con código, de brief a render |
 
 Y tres arman una **cola de tareas** sobre Linear, para que uno o varios agentes trabajen
 de una cola compartida sin pisarse:
@@ -105,6 +117,15 @@ Organizados por dominio, una carpeta cada uno, con su README adentro:
 
 Más dos archivos en la raíz: `metodo.md` (cómo se escribe un prompt que funciona) y
 `constructor.md` (un wizard que te lo arma preguntando).
+
+### `kits/` — lo de los videos
+
+| Kit | Qué trae |
+|---|---|
+| `motion-graphics/` | paso a paso, `CLAUDE.md`, plantillas de brief y storyboard, y el proyecto de una intro de 20 s en HyperFrames |
+
+Los kits sí traen código y necesitan sus herramientas (el `LEEME.md` de cada uno dice
+cuáles). Todo lo demás del pack sigue siendo markdown plano.
 
 ## La idea de fondo
 
