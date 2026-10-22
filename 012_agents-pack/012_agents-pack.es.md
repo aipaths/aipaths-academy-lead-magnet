@@ -6,8 +6,8 @@ content_id: "lead-magnets-agents-pack"
 locale: "es"
 
 # SEO & Display
-title: "Agents Pack: 8 Agentes, 10 Skills y 114 Prompts"
-description: "Agentes especialistas, skills y una librería de prompts en markdown plano. Andan en Claude Code, Codex, Cursor, OpenClaw o el harness que uses. Incluye el kit de motion graphics con código del video."
+title: "Agents Pack: 8 Agentes, 11 Skills y 114 Prompts"
+description: "Agentes especialistas, skills y una librería de prompts en markdown plano. Andan en Claude Code, Codex, Cursor, OpenClaw o el harness que uses. Incluye los kits de los videos: motion graphics con código, el 2do cerebro para tus agentes y la skill de Claude + Blender."
 
 # Category and taxonomy
 category: "ai-agents"
@@ -18,14 +18,15 @@ tags:
   - prompts
   - automation
   - motion-graphics
+  - blender
 
 # Metadata
 difficulty: "intermediate"
-version: "1.1.0"
+version: "1.2.0"
 published: true
 coverImage: "/images/resources/012_agents-pack/thumb.png"
 order: 12
-lastUpdated: "2026-10-13"
+lastUpdated: "2026-10-22"
 author: "AIPaths Academy"
 downloadSize: "1.5 MB"
 estimatedSetupTime: "5 minutos"
@@ -33,7 +34,7 @@ estimatedSetupTime: "5 minutos"
 # Prerequisites
 prerequisites:
   - Un agente de código, el que uses (Claude Code, Codex, Cursor, OpenClaw, Gemini CLI)
-  - Nada más, es todo markdown plano (el kit de motion necesita Node y FFmpeg)
+  - Nada más, es todo markdown plano (el kit de motion necesita Node y FFmpeg; la skill de Blender, Blender con el MCP mcp-for-blender)
 
 # Files included
 files:
@@ -42,9 +43,11 @@ files:
   - path: pack/agentes/portable/
     description: Los mismos 8 en formato agents.md, más el pipeline de 3 y el template
   - path: pack/skills/
-    description: 10 skills, incluida la cola de tareas sobre Linear con su SETUP
+    description: 11 skills, incluidas Claude + Blender y la cola de tareas sobre Linear con su SETUP
   - path: pack/kits/motion-graphics/
     description: El kit del video de motion graphics con código, con el proyecto de ejemplo
+  - path: pack/kits/segundo-cerebro/
+    description: La estructura del 2do cerebro para tus agentes, lista para llenar
   - path: pack/prompts/
     description: 114 prompts por dominio, más el método para escribir los tuyos
   - path: pack/README.md
@@ -53,14 +56,26 @@ files:
 
 ## Qué Incluye
 
-> **¿Venís del video de motion graphics?** Todo lo que viste está en `kits/motion-graphics/`: la skill `motion-director`, el paso a paso y el proyecto completo de la intro. Abrí el `LEEME.md` de esa carpeta.
-
 - **8 agentes especialistas** — en formato Claude Code y en formato portable (*agents.md*), que leen Codex, Cursor, OpenClaw y otros 30 clientes
 - **Un pipeline de 3 agentes** con cola propia: planner, dev y reviewer
-- **10 skills** — siete andan solas, tres arman una cola de tareas compartida sobre Linear
+- **11 skills**: ocho andan solas y tres arman una cola de tareas compartida sobre Linear
 - **114 prompts** organizados por dominio, con el método para escribir los tuyos
 - **Un template vacío** para armar tu propio agente desde cero
 - **El kit de motion graphics con código**: paso a paso, plantillas y el proyecto real de una intro
+- **El kit del 2do cerebro**: la estructura de carpetas para que tus agentes tengan memoria propia
+- **La skill de Claude + Blender**: renders de producto, física, logo 3D y tracking sobre video real
+
+## ¿Venís de un video?
+
+El pack es uno solo y lo dejo en muchos videos. Algunos enseñan algo concreto que está acá adentro: si venís de uno de esos, abrí directo su carpeta.
+
+| Video | Abrí | Qué te llevás |
+|---|---|---|
+| [Motion Graphics con Opus 5.5 que no parecen IA](https://www.youtube.com/watch?v=i1Dd23eaMGs&list=PLItELtCfBA39BbCy0gS8eO2OGn5xEO_cB) | `kits/motion-graphics/` | La skill `motion-director`, el paso a paso y el proyecto de la intro |
+| [Un 2do Cerebro, pero para mis agentes](https://www.youtube.com/watch?v=AH-V_uF_EJo&list=PLItELtCfBA39BbCy0gS8eO2OGn5xEO_cB) | `kits/segundo-cerebro/` | Los 4 archivos del agente, el journal, el índice y el backup |
+| Claude + Blender *(próximamente)* | `skills/claude-blender/` | La skill para manejar Blender desde Claude |
+
+Todos están en la playlist [Claude Code para Emprendedores](https://www.youtube.com/playlist?list=PLItELtCfBA39BbCy0gS8eO2OGn5xEO_cB). Cuando un video deja algo nuevo, aparece acá.
 
 ## Los 8 Especialistas
 
@@ -91,9 +106,9 @@ idea → @planner → Todo → @dev → In Review → @reviewer → Done
 | `dev` | Ejecuta, deja evidencia verificable y aprende el codebase sesión a sesión |
 | `reviewer` | Verifica de verdad: aprueba, o rebota con el motivo concreto |
 
-## Las 10 Skills
+## Las 11 Skills
 
-Siete funcionan sin setup: `prompt-builder`, `onboarding-codebase`, `escribir-tests`, `preparar-pr`, `release`, `token-audit` y `motion-director`.
+Ocho funcionan sin setup: `prompt-builder`, `onboarding-codebase`, `escribir-tests`, `preparar-pr`, `release`, `token-audit`, `motion-director` y `claude-blender`.
 
 Las otras tres arman una cola de tareas sobre Linear para que uno o varios agentes trabajen de una cola compartida sin pisarse: `task-intake`, `task-runner` y `task-review`. Necesitan cuenta de Linear y el MCP configurado; el paso a paso está en `skills/_cola-linear/SETUP.md`, con un script que crea los estados en un comando.
 
@@ -110,6 +125,34 @@ Lo del video, para hacerlo vos. El agente escribe HTML que sabe cómo se ve cada
 | `CLAUDE.md` | Las instrucciones para tu agente, listas para sumar a tu proyecto |
 | `plantillas/` | Brief y storyboard para llenar antes de pedir nada |
 | `ejemplo-intro-aipaths/` | El proyecto completo de la intro de 20 s: escenas, reglas visuales y música generada con código |
+
+## El Kit del 2do Cerebro
+
+Todo lo que tu agente aprende, decide y necesita saber, en archivos de texto tuyos y no en la memoria de una herramienta. Cambiás de ChatGPT a Claude Code o a Gemini y el agente viene con vos.
+
+| Qué | Para qué |
+|---|---|
+| `agente/` | Los 4 archivos: `AGENTS.md` (qué hace), `SOUL.md` (quién es), `USER.md` (para quién trabaja) y `MEMORY.md` (qué recuerda siempre) |
+| `agente/memory/` | El journal: un archivo por día, que el agente lee y escribe solo |
+| `boveda/INDICE.md` | El mapa de lo que saben tus agentes, separado por confiabilidad: decidido, chequeado y sin chequear |
+| `LEEME.md` | Cómo armarlo y cómo hacer el backup en GitHub |
+
+## La Skill de Claude + Blender
+
+Claude maneja un Blender abierto a través del MCP `mcp-for-blender`. La skill sale de una sesión real de pruebas y guarda qué funcionó, qué se rompió y por qué.
+
+![Render de producto: una taza con la marca, hecha desde cero con Claude en Blender](/images/resources/012_agents-pack/blender-taza.jpg)
+
+![Logo 3D armado a partir de una imagen plana](/images/resources/012_agents-pack/blender-logo-3d.jpg)
+
+| Flujo | Qué hace |
+|---|---|
+| Render de producto | Una taza, botella o caja con tu marca, construida con código |
+| Física | Que algo se caiga o se rompa (fractura Voronoi) |
+| Logo 3D e intro | Tu logo en 3D desde una imagen plana, y una intro animada |
+| Camera tracking | Meter un objeto 3D en un video que filmaste con el celular |
+
+Incluye la instalación en Mac y sus trampas, las reglas de oro, las trampas de la API de Blender 5.x, una plantilla de bitácora y 5 scripts (render en segundo plano, MP4 con hoja de contactos, fractura, tracking y anclaje).
 
 ## Los 114 Prompts
 

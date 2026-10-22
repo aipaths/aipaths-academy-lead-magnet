@@ -1,6 +1,6 @@
 # Skills
 
-Diez skills portables. Cada una es una carpeta con un `SKILL.md` y, si hace falta,
+Once skills portables. Cada una es una carpeta con un `SKILL.md` y, si hace falta,
 una carpeta `references/`.
 
 ## Instalar
@@ -17,7 +17,7 @@ ln -s "$PWD/release" ~/.agents/skills/release
 
 Symlink mejor que copia: editás una vez y todos los harnesses ven el mismo archivo.
 
-## Las diez
+## Las once
 
 ### Sueltas — andan solas, sin configurar nada
 
@@ -30,12 +30,16 @@ Symlink mejor que copia: editás una vez y todos los harnesses ven el mismo arch
 | `release` | "hacer un release", "deploy", "publicar versión" |
 | `token-audit` | "mi agente gasta mucho", "optimizar contexto", "reducir tokens" |
 | `motion-director` | "armá un motion", "intro animada", "video con código" |
+| `claude-blender` | "render 3D", "pasá mi logo a 3D", "que se rompa", "tracking", "Blender" |
 
 `prompt-builder` usa la carpeta `prompts/` de este pack como librería.
 
 `motion-director` dirige; el motor (HyperFrames u otro de código a video) hace el render
 con sus propias skills. El paso a paso completo y un proyecto de ejemplo están en
 `kits/motion-graphics/`.
+
+`claude-blender` necesita Blender abierto con el MCP `mcp-for-blender` conectado; la
+instalación y sus trampas en macOS están en `claude-blender/references/setup.md`.
 
 ### La cola de tareas — las tres funcionan juntas
 

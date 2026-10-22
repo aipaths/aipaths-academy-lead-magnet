@@ -1,5 +1,8 @@
 # Motion graphics con código
 
+> 🎥 Viene del video **[Motion Graphics con Opus 5.5 que no parecen IA](https://www.youtube.com/watch?v=i1Dd23eaMGs&list=PLItELtCfBA39BbCy0gS8eO2OGn5xEO_cB)**.
+> Más videos con su parte del pack: `../../README.md` → "¿Venís de un video?".
+
 El kit del video: la skill que dirige, el paso a paso, y el proyecto real de la intro
 que viste, para que lo abras, lo rompas y lo hagas tuyo.
 

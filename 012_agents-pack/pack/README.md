@@ -8,16 +8,21 @@ La excepción son los `kits/`: proyectos reales de los videos, con su código.
 
 ## ¿Venís de un video? Empezá acá
 
-Cada video que deja algo para llevarte tiene su carpeta en `kits/`, con un `LEEME.md` que
-arranca desde cero.
+El pack es uno solo y lo linkeo en muchos videos. Pero algunos videos enseñan algo
+concreto que está acá: si venís de uno de esos, abrí directo su carpeta.
 
-| Video | Kit | Qué te llevás |
+| Video | Abrí | Qué te llevás |
 |---|---|---|
-| Motion graphics con código | `kits/motion-graphics/` | la skill `motion-director`, el paso a paso y el proyecto de la intro |
+| [Motion Graphics con Opus 5.5 que no parecen IA](https://www.youtube.com/watch?v=i1Dd23eaMGs&list=PLItELtCfBA39BbCy0gS8eO2OGn5xEO_cB) | `kits/motion-graphics/` | la skill `motion-director`, el paso a paso y el proyecto de la intro |
+| [Un 2do Cerebro, pero para mis agentes](https://www.youtube.com/watch?v=AH-V_uF_EJo&list=PLItELtCfBA39BbCy0gS8eO2OGn5xEO_cB) | `kits/segundo-cerebro/` | la estructura de carpetas del video: los 4 archivos, el journal, el índice y el backup |
+| Claude + Blender *(próximamente)* | `skills/claude-blender/` | la skill para manejar Blender desde Claude: renders de producto, física, logo 3D y tracking |
+
+Los videos están en la playlist [Claude Code para Emprendedores](https://www.youtube.com/playlist?list=PLItELtCfBA39BbCy0gS8eO2OGn5xEO_cB).
+Voy sumando de a poco: cuando un video deja algo nuevo, aparece acá.
 
 ```
 agentes/     8 especialistas + un pipeline de 3 + el template para armar el tuyo
-skills/      10 skills + una cola de tareas lista para montar
+skills/      11 skills + una cola de tareas lista para montar
 prompts/     114 prompts por dominio + el método para escribir los tuyos
 kits/        lo que se construye en los videos, listo para abrir y correr
 ```
@@ -73,9 +78,9 @@ idea → @planner → Todo → @dev → In Review → @reviewer → Done
 Más `director-generico` (el molde para armar uno de otra área) y `agentes/_template/`,
 el esqueleto vacío con los comentarios de qué va en cada archivo.
 
-### `skills/` — 10 skills
+### `skills/` — 11 skills
 
-Siete andan solas:
+Ocho andan solas:
 
 | Skill | Cuándo dispara |
 |---|---|
@@ -86,6 +91,7 @@ Siete andan solas:
 | `release` | preparar y publicar un release, con rama según entorno |
 | `token-audit` | tu agente gasta demasiado y hay que reducir contexto |
 | `motion-director` | dirigir un motion graphics hecho con código, de brief a render |
+| `claude-blender` | manejar Blender desde Claude: renders, física, logo 3D, tracking |
 
 Y tres arman una **cola de tareas** sobre Linear, para que uno o varios agentes trabajen
 de una cola compartida sin pisarse:
@@ -123,6 +129,7 @@ Más dos archivos en la raíz: `metodo.md` (cómo se escribe un prompt que funci
 | Kit | Qué trae |
 |---|---|
 | `motion-graphics/` | paso a paso, `CLAUDE.md`, plantillas de brief y storyboard, y el proyecto de una intro de 20 s en HyperFrames |
+| `segundo-cerebro/` | la estructura del 2do cerebro: agente de 4 archivos, journal diario, bóveda con índice y backup en GitHub |
 
 Los kits sí traen código y necesitan sus herramientas (el `LEEME.md` de cada uno dice
 cuáles). Todo lo demás del pack sigue siendo markdown plano.
