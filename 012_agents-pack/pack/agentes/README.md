@@ -1,6 +1,6 @@
 # Agentes
 
-Cinco agentes especialistas, en **dos formatos con el mismo contenido**. Elegí el que
+Ocho agentes especialistas, en **dos formatos con el mismo contenido**. Elegí el que
 tu herramienta entienda.
 
 ## `claude-code/` — un archivo, listo para usar
