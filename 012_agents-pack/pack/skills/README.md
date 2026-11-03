@@ -1,6 +1,6 @@
 # Skills
 
-Once skills portables. Cada una es una carpeta con un `SKILL.md` y, si hace falta,
+Doce skills portables. Cada una es una carpeta con un `SKILL.md` y, si hace falta,
 una carpeta `references/`.
 
 ## Instalar
@@ -17,7 +17,7 @@ ln -s "$PWD/release" ~/.agents/skills/release
 
 Symlink mejor que copia: editás una vez y todos los harnesses ven el mismo archivo.
 
-## Las once
+## Las doce
 
 ### Sueltas — andan solas, sin configurar nada
 
@@ -31,6 +31,7 @@ Symlink mejor que copia: editás una vez y todos los harnesses ven el mismo arch
 | `token-audit` | "mi agente gasta mucho", "optimizar contexto", "reducir tokens" |
 | `motion-director` | "armá un motion", "intro animada", "video con código" |
 | `claude-blender` | "render 3D", "pasá mi logo a 3D", "que se rompa", "tracking", "Blender" |
+| `editor-de-video` | "editá este video", "sumale títulos y efectos", "mezclá el audio" |
 
 `prompt-builder` usa la carpeta `prompts/` de este pack como librería.
 

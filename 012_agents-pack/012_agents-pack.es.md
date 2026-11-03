@@ -6,8 +6,8 @@ content_id: "lead-magnets-agents-pack"
 locale: "es"
 
 # SEO & Display
-title: "Agents Pack: 8 Agentes, 11 Skills y 114 Prompts"
-description: "Agentes especialistas, skills y una librería de prompts en markdown plano. Andan en Claude Code, Codex, Cursor, OpenClaw o el harness que uses. Incluye los kits de los videos: motion graphics con código, el 2do cerebro para tus agentes y la skill de Claude + Blender."
+title: "Agents Pack: 8 Agentes, 12 Skills y 114 Prompts"
+description: "Agentes especialistas, skills y una librería de prompts en markdown plano. Andan en Claude Code, Codex, Cursor, OpenClaw o el harness que uses. Incluye los kits de los videos: motion graphics con código, el 2do cerebro para tus agentes, la producción de un video con agentes y la skill de Claude + Blender."
 
 # Category and taxonomy
 category: "ai-agents"
@@ -19,14 +19,15 @@ tags:
   - automation
   - motion-graphics
   - blender
+  - video-editing
 
 # Metadata
 difficulty: "intermediate"
-version: "1.2.0"
+version: "1.3.0"
 published: true
 coverImage: "/images/resources/012_agents-pack/thumb.png"
 order: 12
-lastUpdated: "2026-10-22"
+lastUpdated: "2026-11-03"
 author: "AIPaths Academy"
 downloadSize: "1.5 MB"
 estimatedSetupTime: "5 minutos"
@@ -34,7 +35,7 @@ estimatedSetupTime: "5 minutos"
 # Prerequisites
 prerequisites:
   - Un agente de código, el que uses (Claude Code, Codex, Cursor, OpenClaw, Gemini CLI)
-  - Nada más, es todo markdown plano (el kit de motion necesita Node y FFmpeg; la skill de Blender, Blender con el MCP mcp-for-blender)
+  - Nada más, es todo markdown plano (los kits de motion y de producción de video necesitan Node y FFmpeg; la skill de Blender, Blender con el MCP mcp-for-blender)
 
 # Files included
 files:
@@ -43,11 +44,13 @@ files:
   - path: pack/agentes/portable/
     description: Los mismos 8 en formato agents.md, más el pipeline de 3 y el template
   - path: pack/skills/
-    description: 11 skills, incluidas Claude + Blender y la cola de tareas sobre Linear con su SETUP
+    description: 12 skills, incluidas el editor de video, Claude + Blender y la cola de tareas sobre Linear con su SETUP
   - path: pack/kits/motion-graphics/
     description: El kit del video de motion graphics con código, con el proyecto de ejemplo
   - path: pack/kits/segundo-cerebro/
     description: La estructura del 2do cerebro para tus agentes, lista para llenar
+  - path: pack/kits/produccion-video/
+    description: El paso a paso para producir un video con agentes, los componentes de edición y los prompts de publicación
   - path: pack/prompts/
     description: 114 prompts por dominio, más el método para escribir los tuyos
   - path: pack/README.md
@@ -58,11 +61,12 @@ files:
 
 - **8 agentes especialistas** — en formato Claude Code y en formato portable (*agents.md*), que leen Codex, Cursor, OpenClaw y otros 30 clientes
 - **Un pipeline de 3 agentes** con cola propia: planner, dev y reviewer
-- **11 skills**: ocho andan solas y tres arman una cola de tareas compartida sobre Linear
+- **12 skills**: nueve andan solas y tres arman una cola de tareas compartida sobre Linear
 - **114 prompts** organizados por dominio, con el método para escribir los tuyos
 - **Un template vacío** para armar tu propio agente desde cero
 - **El kit de motion graphics con código**: paso a paso, plantillas y el proyecto real de una intro
 - **El kit del 2do cerebro**: la estructura de carpetas para que tus agentes tengan memoria propia
+- **El kit de producción de video**: cada etapa de un video con agentes, la skill que edita, componentes con su sonido y prompts de capítulos y descripción
 - **La skill de Claude + Blender**: renders de producto, física, logo 3D y tracking sobre video real
 
 ## ¿Venís de un video?
@@ -73,6 +77,7 @@ El pack es uno solo y lo dejo en muchos videos. Algunos enseñan algo concreto q
 |---|---|---|
 | [Motion Graphics con Opus 5.5 que no parecen IA](https://www.youtube.com/watch?v=i1Dd23eaMGs&list=PLItELtCfBA39BbCy0gS8eO2OGn5xEO_cB) | `kits/motion-graphics/` | La skill `motion-director`, el paso a paso y el proyecto de la intro |
 | [Un 2do Cerebro, pero para mis agentes](https://www.youtube.com/watch?v=AH-V_uF_EJo&list=PLItELtCfBA39BbCy0gS8eO2OGn5xEO_cB) | `kits/segundo-cerebro/` | Los 4 archivos del agente, el journal, el índice y el backup |
+| [Claude ya puede hacer un video entero](https://www.youtube.com/watch?v=MNeqNsd5Os8&list=PLItELtCfBA39BbCy0gS8eO2OGn5xEO_cB) | `kits/produccion-video/` | El paso a paso de cada etapa, la skill `editor-de-video`, los componentes y los prompts de publicación |
 | Claude + Blender *(próximamente)* | `skills/claude-blender/` | La skill para manejar Blender desde Claude |
 
 Todos están en la playlist [Claude Code para Emprendedores](https://www.youtube.com/playlist?list=PLItELtCfBA39BbCy0gS8eO2OGn5xEO_cB). Cuando un video deja algo nuevo, aparece acá.
@@ -106,9 +111,9 @@ idea → @planner → Todo → @dev → In Review → @reviewer → Done
 | `dev` | Ejecuta, deja evidencia verificable y aprende el codebase sesión a sesión |
 | `reviewer` | Verifica de verdad: aprueba, o rebota con el motivo concreto |
 
-## Las 11 Skills
+## Las 12 Skills
 
-Ocho funcionan sin setup: `prompt-builder`, `onboarding-codebase`, `escribir-tests`, `preparar-pr`, `release`, `token-audit`, `motion-director` y `claude-blender`.
+Nueve funcionan sin setup: `prompt-builder`, `onboarding-codebase`, `escribir-tests`, `preparar-pr`, `release`, `token-audit`, `motion-director`, `claude-blender` y `editor-de-video`.
 
 Las otras tres arman una cola de tareas sobre Linear para que uno o varios agentes trabajen de una cola compartida sin pisarse: `task-intake`, `task-runner` y `task-review`. Necesitan cuenta de Linear y el MCP configurado; el paso a paso está en `skills/_cola-linear/SETUP.md`, con un script que crea los estados en un comando.
 
@@ -136,6 +141,17 @@ Todo lo que tu agente aprende, decide y necesita saber, en archivos de texto tuy
 | `agente/memory/` | El journal: un archivo por día, que el agente lee y escribe solo |
 | `boveda/INDICE.md` | El mapa de lo que saben tus agentes, separado por confiabilidad: decidido, chequeado y sin chequear |
 | `LEEME.md` | Cómo armarlo y cómo hacer el backup en GitHub |
+
+## El Kit de Producción de Video
+
+Cada etapa de un video con agentes, de la idea al análisis: qué hace solo el agente, qué hace con vos y qué sigue siendo tuyo (el script y grabar).
+
+| Qué | Para qué |
+|---|---|
+| `LEEME.md` | El paso a paso por etapa y una tabla para medir tu flujo antes y después |
+| `editor-de-video` | La skill que edita: cada pieza en la palabra que la nombra, sonido, música, volumen final y revisión por clips |
+| `componentes/` | Título de capítulo, tarjeta que carga valores, descripción de YouTube con capítulos y transición con desenfoque, cada uno con su sonido |
+| `prompts/` | Capítulos, descripción, tags y comentario fijado a partir del transcript |
 
 ## La Skill de Claude + Blender
 
