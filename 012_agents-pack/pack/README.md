@@ -15,6 +15,7 @@ concreto que está acá: si venís de uno de esos, abrí directo su carpeta.
 |---|---|---|
 | [Motion Graphics con Opus 5.5 que no parecen IA](https://www.youtube.com/watch?v=i1Dd23eaMGs&list=PLItELtCfBA39BbCy0gS8eO2OGn5xEO_cB) | `kits/motion-graphics/` | la skill `motion-director`, el paso a paso y el proyecto de la intro |
 | [Un 2do Cerebro, pero para mis agentes](https://www.youtube.com/watch?v=AH-V_uF_EJo&list=PLItELtCfBA39BbCy0gS8eO2OGn5xEO_cB) | `kits/segundo-cerebro/` | la estructura de carpetas del video: los 4 archivos, el journal, el índice y el backup |
+| [Claude ya puede hacer un video entero](https://www.youtube.com/watch?v=MNeqNsd5Os8&list=PLItELtCfBA39BbCy0gS8eO2OGn5xEO_cB) | `kits/produccion-video/` | el paso a paso de cada etapa, la skill `editor-de-video`, los componentes de edición con su sonido y los prompts de capítulos y descripción |
 | Claude + Blender *(próximamente)* | `skills/claude-blender/` | la skill para manejar Blender desde Claude: renders de producto, física, logo 3D y tracking |
 
 Los videos están en la playlist [Claude Code para Emprendedores](https://www.youtube.com/playlist?list=PLItELtCfBA39BbCy0gS8eO2OGn5xEO_cB).
@@ -22,7 +23,7 @@ Voy sumando de a poco: cuando un video deja algo nuevo, aparece acá.
 
 ```
 agentes/     8 especialistas + un pipeline de 3 + el template para armar el tuyo
-skills/      11 skills + una cola de tareas lista para montar
+skills/      12 skills + una cola de tareas lista para montar
 prompts/     114 prompts por dominio + el método para escribir los tuyos
 kits/        lo que se construye en los videos, listo para abrir y correr
 ```
@@ -78,9 +79,9 @@ idea → @planner → Todo → @dev → In Review → @reviewer → Done
 Más `director-generico` (el molde para armar uno de otra área) y `agentes/_template/`,
 el esqueleto vacío con los comentarios de qué va en cada archivo.
 
-### `skills/` — 11 skills
+### `skills/` — 12 skills
 
-Ocho andan solas:
+Nueve andan solas:
 
 | Skill | Cuándo dispara |
 |---|---|
@@ -92,6 +93,7 @@ Ocho andan solas:
 | `token-audit` | tu agente gasta demasiado y hay que reducir contexto |
 | `motion-director` | dirigir un motion graphics hecho con código, de brief a render |
 | `claude-blender` | manejar Blender desde Claude: renders, física, logo 3D, tracking |
+| `editor-de-video` | editar un video con el agente: piezas en la palabra justa, sonido, música, volumen y revisión por clips |
 
 Y tres arman una **cola de tareas** sobre Linear, para que uno o varios agentes trabajen
 de una cola compartida sin pisarse:

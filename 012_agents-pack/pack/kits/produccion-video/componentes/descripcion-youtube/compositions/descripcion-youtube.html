@@ -1,0 +1,195 @@
+<template>
+  <!-- La página de un video (estilo YouTube en modo oscuro, recreada con formas y texto): entra, la descripción
+       se abre, la página sube, la cámara se acerca a los capítulos y los va resaltando de a uno. Al final puede
+       aparecer un cartel. Para cambiarla, tocá sólo el bloque CONFIGURACIÓN del <script>.
+       Medidas en px de la web (página de 912 px de ancho) escaladas con zoom: todo queda vectorial. -->
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Roboto", sans-serif; color: #f1f1f1; }
+    #root * { box-sizing: border-box; }
+    #yd-cam { position: absolute; inset: 0; }
+    #yd-fondo {
+      position: absolute; inset: 0; background-color: #121212;
+      background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    #yd-marco { position: absolute; background: #0f0f0f; box-shadow: 0 8px 24px rgba(0,0,0,0.6); overflow: hidden; }
+    #yd-marco > * { position: absolute; }
+    #yd-marco svg { overflow: visible; }
+    /* El reproductor: un degradé que hace de video. Para un clip real, ver LEEME.md. */
+    #yd-pantalla {
+      overflow: hidden; border-radius: 12px;
+      background: radial-gradient(circle at 30% 40%, #4d5d6c, transparent 60%),
+        radial-gradient(circle at 75% 60%, #6d5644, transparent 55%), #1f2328;
+    }
+    .yd-pastilla { display: flex; align-items: center; gap: 6px; height: 36px; padding: 0 16px; border-radius: 18px;
+      background: rgba(255,255,255,0.1); font-size: 14px; font-weight: 500; }
+    .yd-gris { color: #aaaaaa; }
+    .yd-negrita { font-weight: 700; } /* el peso va en el CSS para que la fuente se cargue en 700 */
+  </style>
+  <div id="root" data-composition-id="descripcion-youtube" data-width="1920" data-height="1080">
+    <!-- #yd-capa no lleva tiempo propio: así se puede poner un <video> con data-start adentro del reproductor. -->
+    <div id="yd-capa">
+      <div id="yd-cam">
+        <div id="yd-fondo"></div>
+        <div id="yd-marco"><div id="yd-pantalla"><div id="yd-controles"></div></div></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (() => {
+    // ───────────── CONFIGURACIÓN ─────────────
+    const TITULO = "Cómo armé este video paso a paso";
+    const CANAL = "Tu canal";
+    const INICIAL = "T"; // letra del avatar
+    const COLOR_AVATAR = "#5a3fd6";
+    const SUSCRIPTORES = "10 K suscriptores";
+    const VISTAS = "2,5 K vistas  hace 3 días"; // null = no se dibuja (video sin publicar)
+    const LIKES = "180"; // null = sólo el ícono
+    const DURACION_VIDEO = "12:30"; // lo que marca el reloj del reproductor como total
+    const POSICION = 1; // segundo del video en que arranca el reloj
+    const DESCRIPCION = "En este video te muestro cómo armo un video de punta a punta.\nAbajo están los capítulos para saltar a cada parte.";
+    const CAPITULOS = [["00:00", "Introducción"], ["00:45", "La idea"], ["02:10", "El guion"], ["04:30", "La grabación"],
+      ["07:15", "La edición"], ["10:05", "La publicación"], ["11:40", "Cierre"]];
+    const ACENTO = "#ff0033"; // barra de progreso
+    const COLOR_TIEMPOS = "#62b6ff"; // los 00:00 de los capítulos
+    const COLOR_RESALTADO = "rgba(62,166,255,0.18)";
+    // Tiempos en segundos desde que aparece la página.
+    const ABRIR_T = 1.2; // se abre la descripción y la página sube
+    const FOCO_T = 2.6; // la cámara llega a los capítulos (sale 0,8 s antes)
+    const FOCO_DUR = 6.4; // cuánto se queda cerca antes de volver
+    const ZOOM = 1.55; // cuánto se acerca
+    // [capítulo (0 = el primero), segundo]: el resaltado salta a ese capítulo en ese segundo. [] = sin resaltado.
+    const RESALTAR = [[0, 3.0], [1, 3.6], [2, 4.2], [3, 4.8], [4, 5.4], [5, 6.0], [6, 6.6]];
+    const CARTEL = { texto: "Capítulos listos", t: 7.3 }; // null = sin cartel
+    // ─────────────────────────────────────────
+
+    const NS = "http://www.w3.org/2000/svg";
+    const $ = (id) => document.getElementById(id);
+    const marco = $("yd-marco"), pantalla = $("yd-pantalla"), controles = $("yd-controles");
+    const SIN_UNIDAD = ["opacity", "zIndex", "fontWeight", "zoom"];
+    const px = (o) => Object.fromEntries(Object.entries(o).map(([k, v]) =>
+      [k, typeof v === "number" && !SIN_UNIDAD.includes(k) ? v + "px" : v]));
+    const crear = (tag, padre, estilo = {}, texto, clase) => {
+      const n = document.createElement(tag);
+      Object.assign(n.style, px(estilo));
+      if (texto != null) n.textContent = texto;
+      if (clase) n.className = clase;
+      padre.appendChild(n);
+      return n;
+    };
+    const ICONOS = {
+      menu: '<path d="M3 6h18M3 12h18M3 18h18"/>', buscar: '<circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/>',
+      like: '<path d="M7 10v11M7 10l4-8a2.5 2.5 0 0 1 3 3l-1 5h5.5a2 2 0 0 1 2 2.3l-1.2 7a2 2 0 0 1-2 1.7H7M7 10H4a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h3"/>',
+      compartir: '<path d="M14 5l7 7-7 7M21 12H11a7 7 0 0 0-7 7"/>', puntos: '<path d="M5 12h.01M12 12h.01M19 12h.01" stroke-width="3.4"/>',
+      pausa: '<path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z" fill="#fff" stroke="none"/>',
+      volumen: '<path d="M4 9h4l5-4v14l-5-4H4z" fill="#fff" stroke="none"/><path d="M16 8.5a5 5 0 0 1 0 7"/>',
+      ajustes: '<circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="7.5"/>', completa: '<path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/>',
+      listo: '<path d="M5 12.5l4.5 4.5L19 7.5"/>',
+    };
+    const icono = (padre, nombre, x, y, tam = 24, color = "#f1f1f1") => {
+      const s = document.createElementNS(NS, "svg");
+      ["viewBox", "width", "height"].forEach((k, i) => s.setAttribute(k, ["0 0 24 24", tam, tam][i]));
+      Object.assign(s.style, { position: x == null ? "static" : "absolute", left: x + "px", top: y + "px" });
+      s.innerHTML = `<g fill="none" stroke="${color}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${ICONOS[nombre]}</g>`;
+      padre.appendChild(s);
+      return s;
+    };
+    const avatar = (x, y, tam) => crear("div", marco, { left: x, top: y, width: tam, height: tam, borderRadius: "50%",
+      background: COLOR_AVATAR, display: "flex", alignItems: "center", justifyContent: "center",
+      fontSize: tam * 0.5, fontWeight: 500 }, INICIAL);
+    const pastilla = (x, y, texto, iconos = []) => {
+      const p = crear("div", marco, { left: x, top: y }, null, "yd-pastilla");
+      iconos.forEach((n) => icono(p, n, null, null, 22));
+      if (texto) crear("span", p, {}, texto);
+      return p;
+    };
+    const reloj = (s) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, "0")}`;
+
+    // Página de 912×770 px web, escalada para ocupar el cuadro de 1920×1080.
+    const W = 912, H = 770, ESCALA = 1.25;
+    Object.assign(marco.style, px({ zoom: ESCALA, left: (1920 - W * ESCALA) / 2 / ESCALA,
+      top: (1080 - H * ESCALA) / 2 / ESCALA, width: W, height: H, borderRadius: 20 }));
+    // Barra de arriba (queda fija cuando la página sube): menú, marca genérica, búsqueda y avatar.
+    const barra = [crear("div", marco, { left: 0, top: 0, width: W, height: 56, background: "#0f0f0f" })];
+    barra.push(icono(marco, "menu", 24, 16), crear("div", marco, { left: 72, top: 18, width: 26, height: 20, borderRadius: 6, background: "#3a3a3a" }),
+      crear("span", marco, { left: 106, top: 15, fontSize: 19, lineHeight: 26 }, "Videos", "yd-negrita"),
+      crear("div", marco, { left: 250, top: 8, width: 440, height: 40, borderRadius: 20, border: "1px solid #303030", background: "#121212" }),
+      crear("span", marco, { left: 268, top: 17, fontSize: 16, lineHeight: 22 }, "Buscar", "yd-gris"),
+      crear("div", marco, { left: 626, top: 8, width: 64, height: 40, borderRadius: "0 20px 20px 0", background: "#222" }),
+      icono(marco, "buscar", 646, 16), avatar(864, 12, 32));
+    barra.forEach((n) => (n.style.zIndex = 2));
+    // Reproductor, título, canal y botones.
+    Object.assign(pantalla.style, px({ left: 16, top: 68, width: 880, height: 495 }));
+    crear("span", marco, { left: 16, top: 575, width: 880, fontSize: 20, lineHeight: 28 }, TITULO, "yd-negrita");
+    avatar(16, 629, 40);
+    crear("span", marco, { left: 68, top: 630, fontSize: 16, fontWeight: 500, lineHeight: 22 }, CANAL);
+    crear("span", marco, { left: 68, top: 652, fontSize: 12, lineHeight: 18 }, SUSCRIPTORES, "yd-gris");
+    Object.assign(pastilla(196, 631, "Suscribirse").style, { background: "#f1f1f1", color: "#0f0f0f" });
+    const like = pastilla(0, 631, LIKES, ["like"]);
+    Object.assign(icono(like, "like", null, null, 22).style, { transform: "rotate(180deg)", marginLeft: "14px" });
+    const botones = [pastilla(0, 631, null, ["puntos"]), pastilla(0, 631, "Compartir", ["compartir"]), like];
+    Object.assign(botones[0].style, { width: "36px", padding: "0 7px" });
+    let x = 896; // alineados al borde derecho, como en la página
+    botones.forEach((b) => { x -= b.offsetWidth; b.style.left = x + "px"; x -= 8; });
+    // Caja de la descripción: cerrada al principio, se abre con los capítulos.
+    const caja = crear("div", marco, { left: 16, top: 684, width: 880, height: 70, borderRadius: 12, overflow: "hidden",
+      background: "rgba(255,255,255,0.1)", padding: "12px", fontSize: 14, lineHeight: 20 });
+    if (VISTAS) crear("div", caja, { fontWeight: 500 }, VISTAS);
+    crear("div", caja, { whiteSpace: "pre-line" }, DESCRIPCION);
+    const lista = crear("div", caja, { marginTop: 20, position: "relative" });
+    const resaltado = crear("div", lista, { position: "absolute", left: -8, width: 420, top: 0, height: 20,
+      borderRadius: 6, background: COLOR_RESALTADO, opacity: 0 });
+    const filas = CAPITULOS.map(([t, nombre]) => {
+      const fila = crear("div", lista, { position: "relative" });
+      crear("span", fila, { color: COLOR_TIEMPOS }, t);
+      crear("span", fila, {}, " " + nombre);
+      return fila;
+    });
+    const cartel = CARTEL && crear("div", caja, { position: "absolute", right: 28, top: 110, display: "flex", alignItems: "center",
+      gap: 8, padding: "10px 18px", borderRadius: 24, background: "rgba(105,219,124,0.14)", border: "1.5px solid #69db7c",
+      fontSize: 20, fontWeight: 500, opacity: 0 }, null);
+    if (cartel) { icono(cartel, "listo", null, null, 22, "#69db7c"); crear("span", cartel, {}, CARTEL.texto); }
+    // Controles del reproductor: degradé, progreso, botones y reloj.
+    Object.assign(controles.style, px({ position: "absolute", left: 0, top: 0, width: 880, height: 495 }));
+    crear("div", controles, { position: "absolute", left: 0, right: 0, bottom: 0, height: 120, background: "linear-gradient(transparent, rgba(0,0,0,0.75))" });
+    crear("div", controles, { position: "absolute", left: 12, right: 12, bottom: 56, height: 3, background: "rgba(255,255,255,0.25)" });
+    const avance = crear("div", controles, { position: "absolute", left: 12, bottom: 56, height: 3, width: 0, background: ACENTO });
+    [["pausa", 18], ["volumen", 66], ["ajustes", 778], ["completa", 826]].forEach(([n, x]) => icono(controles, n, x, 453, 24, "#fff"));
+    const hora = crear("span", controles, { position: "absolute", left: 108, top: 455, fontSize: 14, fontWeight: 500, lineHeight: 20, color: "#eee" });
+
+    // Animación.
+    const FIN = 10; // = data-duration del host en index.html
+    const total = DURACION_VIDEO.split(":").reduce((a, b) => a * 60 + Number(b), 0);
+    const subida = 684 - 68; // la página sube hasta dejar la caja debajo de la barra
+    const r = lista.getBoundingClientRect(); // centro de los capítulos en el cuadro, antes de moverse
+    const cx = r.left + r.width / 2, cy = r.top + r.height / 2 - subida * ESCALA;
+    const tl = gsap.timeline({ paused: true });
+    const ciclo = { s: 0 };
+    tl.to(ciclo, { s: FIN, duration: FIN, ease: "none", onUpdate: () => {
+      const p = POSICION + ciclo.s;
+      avance.style.width = (856 * Math.min(p / total, 1)).toFixed(2) + "px";
+      hora.textContent = `${reloj(p)} / ${DURACION_VIDEO}`;
+    } }, 0);
+    tl.fromTo(marco, { opacity: 0, y: 20, scale: 0.97 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "power3.out" }, 0);
+    tl.to(controles, { opacity: 0, duration: 0.3 }, Math.min(2.2, ABRIR_T));
+    const movibles = Array.from(marco.children).filter((n) => !barra.includes(n));
+    tl.to(caja, { height: caja.scrollHeight, duration: 0.35, ease: "power2.out" }, ABRIR_T)
+      .to(movibles, { y: -subida, duration: 0.9, ease: "power3.inOut" }, ABRIR_T + 0.15)
+      // lo que quedó detrás de la barra (reproductor, título, botones) se apaga: ya no se ve
+      .to(movibles.filter((n) => n !== caja), { opacity: 0, duration: 0.2 }, ABRIR_T + 0.85);
+    const cerca = (v, max) => Math.min(0, Math.max(max * (1 - ZOOM), v));
+    tl.set("#yd-cam", { transformOrigin: "0 0", x: 0, y: 0, scale: 1 }, 0)
+      .to("#yd-cam", { x: cerca(960 - ZOOM * cx, 1920), y: cerca(540 - ZOOM * cy, 1080), scale: ZOOM, duration: 0.8, ease: "power3.inOut" }, FOCO_T - 0.8)
+      .to("#yd-cam", { x: 0, y: 0, scale: 1, duration: 0.8, ease: "power3.inOut" }, FOCO_T + FOCO_DUR);
+    RESALTAR.forEach(([i, t], k) => {
+      const y = filas[i].offsetTop;
+      if (k === 0) tl.set(resaltado, { y }, t).fromTo(resaltado, { opacity: 0 }, { opacity: 1, duration: 0.2, immediateRender: false }, t);
+      else tl.to(resaltado, { y, duration: 0.25, ease: "power3.out" }, t);
+    });
+    if (cartel) tl.fromTo(cartel, { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2.6)" }, CARTEL.t);
+    tl.set({}, {}, FIN);
+    window.__timelines["descripcion-youtube"] = tl;
+    })();
+  </script>
+</template>

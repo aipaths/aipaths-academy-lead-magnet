@@ -1,0 +1,12 @@
+{
+  "name": "tarjeta-marcador",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npx --yes hyperframes@0.8.223 preview",
+    "check": "npx --yes hyperframes@0.8.223 check",
+    "snapshot": "npx --yes hyperframes@0.8.223 snapshot",
+    "render": "npx --yes hyperframes@0.8.223 render",
+    "render:transparente": "npx --yes hyperframes@0.8.223 render -c compositions/tarjeta-marcador.html --format mov"
+  }
+}

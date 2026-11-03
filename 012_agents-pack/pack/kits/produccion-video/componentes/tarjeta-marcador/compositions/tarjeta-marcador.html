@@ -1,0 +1,158 @@
+<template>
+  <!-- Tarjeta de una etapa: el nombre arriba, cuatro columnas que cargan su valor de a una (+, =, −, ++…) y el
+       nivel de automatización abajo. Trazo a mano tipo pizarra, con semilla fija: cada cuadro sale igual.
+       Ocupa la pantalla entera (reemplaza la toma mientras se habla de esa etapa).
+       Para cambiarla, tocá sólo el bloque CONFIGURACIÓN del <script>. -->
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    #tm-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      /* Fuente: una de las que HyperFrames trae (Nunito, Inter, Roboto, Poppins…). Para el look de pizarra
+         usá Excalifont: ver LEEME.md. */
+      font-family: "Nunito", sans-serif;
+    }
+  </style>
+  <div id="root" data-composition-id="tarjeta-marcador" data-width="1920" data-height="1080">
+    <!-- data-duration de #tm-capa = lo que dura la tarjeta en pantalla (y la del host en index.html). -->
+    <div id="tm-capa" class="clip" data-start="0" data-duration="6" data-track-index="0">
+      <!-- El dibujo usa coordenadas de un cuadro 4K (3840×2160) y se escala a cualquier tamaño. -->
+      <svg id="tm-svg" viewBox="0 0 3840 2160"></svg>
+    </div>
+  </div>
+  <script>
+    (() => {
+    // ───────────── CONFIGURACIÓN ─────────────
+    const ETAPA = "Investigar"; // título de la tarjeta
+    const COLUMNAS = ["Mi tiempo", "Tiempo de tarea", "Costo", "Calidad"];
+    const VALORES = ["+", "+", "−", "=+"]; // uno por columna: «+» verde, «−» rojo, el resto neutro
+    const NIVEL = "Automático"; // "Automático", "Asistido" o "Manual"
+    const ETIQUETA_NIVEL = "Nivel de automatización";
+    // Segundo (desde que aparece la tarjeta) en que carga cada valor: ponelo en la palabra de la voz.
+    //   número > 0 → entra en ese segundo (con un pop) · 0 o negativo → ya está desde el primer cuadro
+    //   null → no aparece en esta tarjeta (para ir cargando una columna por tarjeta)
+    const TIEMPOS_VALORES = [1.0, 1.7, 2.4, 3.1];
+    const TIEMPO_NIVEL = 3.8; // mismo criterio que arriba
+    const ARMADA = false; // true: la tarjeta entra ya dibujada (cuando vuelve varias veces a pantalla)
+    const SEMILLA = 7; // cambia el temblor del trazo a mano
+    const COLORES = {
+      fondo: "#141210",
+      tinta: "#f1ebdd", // trazos, textos y cabeceras
+      textoCabecera: "#141210",
+      bien: "#1d5c2e", // caja de un valor con «+»
+      mal: "#6b2c2c", // caja de un valor «−»
+      neutro: "#2b2925", // el resto («=», «=−»…)
+      Automático: "#69db7c",
+      Asistido: "#f1ebdd",
+      Manual: "#ff8787",
+    };
+    // ─────────────────────────────────────────
+
+    const svg = document.getElementById("tm-svg");
+    svg.style.background = COLORES.fondo;
+    const NS = "http://www.w3.org/2000/svg";
+    const tono = (v) => (v.includes("+") ? "bien" : /^[−-]+$/.test(v) ? "mal" : "neutro");
+    let semilla = SEMILLA;
+    const azar = () => {
+      semilla = (semilla + 0x6d2b79f5) | 0;
+      let t = Math.imul(semilla ^ (semilla >>> 15), 1 | semilla);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+    const r = (a) => (azar() * 2 - 1) * a;
+    const el = (tag, attrs, padre) => {
+      const n = document.createElementNS(NS, tag);
+      Object.entries(attrs).forEach(([k, v]) => n.setAttribute(k, v));
+      (padre || svg).appendChild(n);
+      return n;
+    };
+    // Línea a mano: dos pasadas de curva con un leve temblor, como en una pizarra.
+    const linea = (x1, y1, x2, y2) => {
+      const len = Math.hypot(x2 - x1, y2 - y1);
+      const o = Math.min(7, len * 0.012);
+      const px = -(y2 - y1) / len, py = (x2 - x1) / len;
+      let d = "";
+      for (let p = 0; p < 2; p++) {
+        const b1 = r(len * 0.006), b2 = r(len * 0.006);
+        const a = [x1 + r(o), y1 + r(o)], z = [x2 + r(o), y2 + r(o)];
+        const c1 = [x1 + (x2 - x1) * 0.4 + px * b1, y1 + (y2 - y1) * 0.4 + py * b1];
+        const c2 = [x1 + (x2 - x1) * 0.75 + px * b2, y1 + (y2 - y1) * 0.75 + py * b2];
+        d += `M${a.map((v) => v.toFixed(1)).join(" ")} C${c1.map((v) => v.toFixed(1)).join(" ")} ` +
+          `${c2.map((v) => v.toFixed(1)).join(" ")} ${z.map((v) => v.toFixed(1)).join(" ")} `;
+      }
+      return d;
+    };
+    // Rectángulo a mano que se dibuja animando stroke-dashoffset de 1 a 0.
+    const rect = (x, y, w, h, padre, color, ancho) =>
+      el("path", {
+        d: linea(x, y, x + w, y) + linea(x + w, y, x + w, y + h) + linea(x + w, y + h, x, y + h) + linea(x, y + h, x, y),
+        fill: "none", stroke: color || COLORES.tinta, "stroke-width": ancho || 6, "stroke-linecap": "round",
+        pathLength: 1, "stroke-dasharray": "1 1", "stroke-dashoffset": 1,
+      }, padre);
+    const relleno = (x, y, w, h, color, padre) => {
+      const pts = [[x, y], [x + w, y], [x + w, y + h], [x, y + h]].map(([a, b]) => `${(a + r(5)).toFixed(1)},${(b + r(5)).toFixed(1)}`);
+      return el("polygon", { points: pts.join(" "), fill: color }, padre);
+    };
+    const texto = (x, y, s, tam, color, padre) => {
+      const n = el("text", { x, y, "font-size": tam, fill: color, "text-anchor": "middle", "dominant-baseline": "central" }, padre);
+      n.textContent = s;
+      return n;
+    };
+
+    // Armado: título, cuatro columnas (cabecera + caja con el valor) y la pastilla del nivel.
+    const tl = gsap.timeline({ paused: true });
+    const ANCHO = 700, GAP = 60, X0 = (3840 - 4 * ANCHO - 3 * GAP) / 2;
+    const titulo = texto(1920, 420, ETAPA, 230, COLORES.tinta);
+    const trazos = [], cabezas = [], cajas = [];
+    COLUMNAS.forEach((c, i) => {
+      const x = X0 + i * (ANCHO + GAP);
+      const cab = el("g", { opacity: 0 });
+      relleno(x, 690, ANCHO, 170, COLORES.tinta, cab);
+      texto(x + ANCHO / 2, 780, c, 76, COLORES.textoCabecera, cab);
+      cabezas.push(cab);
+      trazos.push(rect(x, 690, ANCHO, 170));
+      const caja = el("g", { opacity: 0 });
+      relleno(x + 6, 906, ANCHO - 12, 488, COLORES[tono(VALORES[i])], caja);
+      texto(x + ANCHO / 2, 1160, VALORES[i], 300, COLORES.tinta, caja);
+      cajas.push(caja);
+      trazos.push(rect(x, 900, ANCHO, 500));
+    });
+    const colorNivel = COLORES[NIVEL] || COLORES.tinta;
+    const etiqueta = texto(1920, 1560, ETIQUETA_NIVEL, 80, COLORES.tinta);
+    etiqueta.setAttribute("fill-opacity", 0.6);
+    const pastilla = el("g", { opacity: 0 });
+    if (NIVEL === "Manual") relleno(1370, 1650, 1100, 230, "rgba(255,135,135,0.16)", pastilla);
+    rect(1370, 1650, 1100, 230, pastilla, colorNivel, 8).setAttribute("stroke-dashoffset", 0);
+    texto(1920, 1770, NIVEL, 150, colorNivel, pastilla);
+
+    // Entrada: la tarjeta se dibuja en ~0,6 s (o ya está, con ARMADA).
+    if (ARMADA) {
+      [...cabezas].forEach((n) => n.setAttribute("opacity", 1));
+      trazos.forEach((n) => n.setAttribute("stroke-dashoffset", 0));
+    } else {
+      [titulo, etiqueta].forEach((n) => n.setAttribute("opacity", 0));
+      tl.to(titulo, { opacity: 1, duration: 0.2, ease: "power2.out" }, 0)
+        .fromTo(titulo, { y: 30 }, { y: 0, duration: 0.3, ease: "power3.out", immediateRender: false }, 0)
+        .to(trazos, { attr: { "stroke-dashoffset": 0 }, duration: 0.4, ease: "power2.inOut", stagger: 0.03 }, 0.05)
+        .to(cabezas, { opacity: 1, duration: 0.2, stagger: 0.05 }, 0.2)
+        .to(etiqueta, { opacity: 1, duration: 0.25 }, 0.4);
+    }
+    // Cada valor y el nivel: entran con un rebote en su segundo (ahí va el pop del sonido).
+    const aparecer = (n, t, desde) => {
+      if (t == null) return;
+      if (t <= 0) return n.setAttribute("opacity", 1);
+      tl.fromTo(n, { opacity: 0, scale: desde, transformOrigin: "50% 50%" },
+        { opacity: 1, scale: 1, duration: 0.25, ease: "back.out(2)", immediateRender: false }, t);
+    };
+    cajas.forEach((c, i) => aparecer(c, TIEMPOS_VALORES[i], 0.55));
+    aparecer(pastilla, TIEMPO_NIVEL, 0.6);
+    window.__timelines["tarjeta-marcador"] = tl;
+    })();
+  </script>
+</template>
