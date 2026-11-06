@@ -1,0 +1,3 @@
+# El sandbox de Codex corta la red por defecto: sin esto, las herramientas no llegan a Google.
+[sandbox_workspace_write]
+network_access = true
