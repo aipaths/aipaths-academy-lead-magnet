@@ -1,6 +1,6 @@
 # Curso de agentes de IA desde cero: tu asistente personal
 
-> 🎥 Viene del video **[Curso de agentes de IA desde cero](https://www.youtube.com/watch?v=PENDIENTE_VIDEO_ID&list=PLItELtCfBA39ig81F5j9wcMqclkhfdKaL)**.
+> 🎥 Viene del video **[Curso de agentes de IA desde cero](https://www.youtube.com/watch?v=QFufRiy2VJA&list=PLItELtCfBA39ig81F5j9wcMqclkhfdKaL)**.
 > Más videos con su parte del pack: `../../README.md` → "¿Venís de un video?".
 
 La carpeta del asistente personal del video, vacía y lista para llenar. Funciona con Claude
