@@ -7,7 +7,7 @@ locale: "es"
 
 # SEO & Display
 title: "Agents Pack: 8 Agentes, 12 Skills y 114 Prompts"
-description: "Agentes especialistas, skills y una librería de prompts en markdown plano. Andan en Claude Code, Codex, Cursor, OpenClaw o el harness que uses. Incluye los kits de los videos: motion graphics con código, el 2do cerebro para tus agentes, la producción de un video con agentes y la skill de Claude + Blender."
+description: "Agentes especialistas, skills y una librería de prompts en markdown plano. Andan en Claude Code, Codex, Cursor, OpenClaw o el harness que uses. Incluye los kits de los videos: motion graphics con código, el 2do cerebro para tus agentes, la producción de un video con agentes, la plantilla del curso de agentes y la skill de Claude + Blender."
 
 # Category and taxonomy
 category: "ai-agents"
@@ -23,19 +23,19 @@ tags:
 
 # Metadata
 difficulty: "intermediate"
-version: "1.3.0"
+version: "1.4.0"
 published: true
 coverImage: "/images/resources/012_agents-pack/thumb.png"
 order: 12
-lastUpdated: "2026-11-03"
+lastUpdated: "2026-11-06"
 author: "AIPaths Academy"
-downloadSize: "1.5 MB"
+downloadSize: "1.6 MB"
 estimatedSetupTime: "5 minutos"
 
 # Prerequisites
 prerequisites:
   - Un agente de código, el que uses (Claude Code, Codex, Cursor, OpenClaw, Gemini CLI)
-  - Nada más, es todo markdown plano (los kits de motion y de producción de video necesitan Node y FFmpeg; la skill de Blender, Blender con el MCP mcp-for-blender)
+  - Nada más, es todo markdown plano (los kits de motion y de producción de video necesitan Node y FFmpeg; la skill de Blender, Blender con el MCP mcp-for-blender; las herramientas de Google del kit del curso, Node)
 
 # Files included
 files:
@@ -51,6 +51,8 @@ files:
     description: La estructura del 2do cerebro para tus agentes, lista para llenar
   - path: pack/kits/produccion-video/
     description: El paso a paso para producir un video con agentes, los componentes de edición y los prompts de publicación
+  - path: pack/kits/curso-agentes/
+    description: La plantilla del curso de agentes, un asistente personal listo para llenar y conectar a Google
   - path: pack/prompts/
     description: 114 prompts por dominio, más el método para escribir los tuyos
   - path: pack/README.md
@@ -67,6 +69,7 @@ files:
 - **El kit de motion graphics con código**: paso a paso, plantillas y el proyecto real de una intro
 - **El kit del 2do cerebro**: la estructura de carpetas para que tus agentes tengan memoria propia
 - **El kit de producción de video**: cada etapa de un video con agentes, la skill que edita, componentes con su sonido y prompts de capítulos y descripción
+- **El kit del curso de agentes**: la carpeta del asistente personal, con 4 skills propias y los pasos para conectar Google y un tablero
 - **La skill de Claude + Blender**: renders de producto, física, logo 3D y tracking sobre video real
 
 ## ¿Venís de un video?
@@ -78,9 +81,10 @@ El pack es uno solo y lo dejo en muchos videos. Algunos enseñan algo concreto q
 | [Motion Graphics con Opus 5.5 que no parecen IA](https://www.youtube.com/watch?v=i1Dd23eaMGs&list=PLItELtCfBA39BbCy0gS8eO2OGn5xEO_cB) | `kits/motion-graphics/` | La skill `motion-director`, el paso a paso y el proyecto de la intro |
 | [Un 2do Cerebro, pero para mis agentes](https://www.youtube.com/watch?v=AH-V_uF_EJo&list=PLItELtCfBA39BbCy0gS8eO2OGn5xEO_cB) | `kits/segundo-cerebro/` | Los 4 archivos del agente, el journal, el índice y el backup |
 | [Claude ya puede hacer un video entero](https://www.youtube.com/watch?v=MNeqNsd5Os8&list=PLItELtCfBA39BbCy0gS8eO2OGn5xEO_cB) | `kits/produccion-video/` | El paso a paso de cada etapa, la skill `editor-de-video`, los componentes y los prompts de publicación |
+| Curso de agentes de IA desde cero | `kits/curso-agentes/` | La plantilla del asistente personal, sus skills y los pasos para conectar Google y un tablero |
 | Claude + Blender *(próximamente)* | `skills/claude-blender/` | La skill para manejar Blender desde Claude |
 
-Todos están en la playlist [Claude Code para Emprendedores](https://www.youtube.com/playlist?list=PLItELtCfBA39BbCy0gS8eO2OGn5xEO_cB). Cuando un video deja algo nuevo, aparece acá.
+Salvo el curso, todos están en la playlist [Claude Code para Emprendedores](https://www.youtube.com/playlist?list=PLItELtCfBA39BbCy0gS8eO2OGn5xEO_cB). Cuando un video deja algo nuevo, aparece acá.
 
 ## Los 8 Especialistas
 
@@ -152,6 +156,21 @@ Cada etapa de un video con agentes, de la idea al análisis: qué hace solo el a
 | `editor-de-video` | La skill que edita: cada pieza en la palabra que la nombra, sonido, música, volumen final y revisión por clips |
 | `componentes/` | Título de capítulo, tarjeta que carga valores, descripción de YouTube con capítulos y transición con desenfoque, cada uno con su sonido |
 | `prompts/` | Capítulos, descripción, tags y comentario fijado a partir del transcript |
+
+## El Kit del Curso de Agentes
+
+La carpeta del asistente personal del curso, vacía y lista para llenar con tus clientes y tus facturas. Funciona con Claude Code, Codex y Gemini, y las instrucciones están en un solo lugar.
+
+| Qué | Para qué |
+|---|---|
+| `AGENTS.md` | El onboarding: quién sos, cómo escribís y qué nunca hace el agente. `CLAUDE.md` y `GEMINI.md` apuntan a este |
+| `.agents/skills/` | 4 skills propias de la plantilla: follow-up, carga de facturas, agenda y brief diario |
+| `herramientas/` | Gmail, Calendar y Sheets por la API de Google, sin dependencias. Deja borradores y no manda, salvo que lo habilites |
+| `PASO-A-PASO-CONECTORES.md` | Conectar Google desde la herramienta, sin armar nada |
+| `PASO-A-PASO-GOOGLE.md` | Crear tu propia llave de Google para que funcione en cualquier IA |
+| `PASO-A-PASO-TABLERO.md` | Conectar un tablero de tareas por MCP, con Linear de ejemplo |
+
+No trae los datos inventados del video: arranca vacía para que cargues los tuyos.
 
 ## La Skill de Claude + Blender
 

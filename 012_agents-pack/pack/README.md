@@ -16,9 +16,10 @@ concreto que está acá: si venís de uno de esos, abrí directo su carpeta.
 | [Motion Graphics con Opus 5.5 que no parecen IA](https://www.youtube.com/watch?v=i1Dd23eaMGs&list=PLItELtCfBA39BbCy0gS8eO2OGn5xEO_cB) | `kits/motion-graphics/` | la skill `motion-director`, el paso a paso y el proyecto de la intro |
 | [Un 2do Cerebro, pero para mis agentes](https://www.youtube.com/watch?v=AH-V_uF_EJo&list=PLItELtCfBA39BbCy0gS8eO2OGn5xEO_cB) | `kits/segundo-cerebro/` | la estructura de carpetas del video: los 4 archivos, el journal, el índice y el backup |
 | [Claude ya puede hacer un video entero](https://www.youtube.com/watch?v=MNeqNsd5Os8&list=PLItELtCfBA39BbCy0gS8eO2OGn5xEO_cB) | `kits/produccion-video/` | el paso a paso de cada etapa, la skill `editor-de-video`, los componentes de edición con su sonido y los prompts de capítulos y descripción |
+| Curso de agentes de IA desde cero | `kits/curso-agentes/` | la carpeta del asistente personal: `AGENTS.md`, los puentes para cada IA, 4 skills, las herramientas de Google y el paso a paso para conectarlo |
 | Claude + Blender *(próximamente)* | `skills/claude-blender/` | la skill para manejar Blender desde Claude: renders de producto, física, logo 3D y tracking |
 
-Los videos están en la playlist [Claude Code para Emprendedores](https://www.youtube.com/playlist?list=PLItELtCfBA39BbCy0gS8eO2OGn5xEO_cB).
+Salvo el curso, los videos están en la playlist [Claude Code para Emprendedores](https://www.youtube.com/playlist?list=PLItELtCfBA39BbCy0gS8eO2OGn5xEO_cB).
 Voy sumando de a poco: cuando un video deja algo nuevo, aparece acá.
 
 ```
@@ -132,6 +133,7 @@ Más dos archivos en la raíz: `metodo.md` (cómo se escribe un prompt que funci
 |---|---|
 | `motion-graphics/` | paso a paso, `CLAUDE.md`, plantillas de brief y storyboard, y el proyecto de una intro de 20 s en HyperFrames |
 | `segundo-cerebro/` | la estructura del 2do cerebro: agente de 4 archivos, journal diario, bóveda con índice y backup en GitHub |
+| `curso-agentes/` | el asistente personal del curso: `AGENTS.md`, 4 skills propias, herramientas de Gmail, Calendar y Sheets, y los pasos para conectar Google y un tablero |
 
 Los kits sí traen código y necesitan sus herramientas (el `LEEME.md` de cada uno dice
 cuáles). Todo lo demás del pack sigue siendo markdown plano.

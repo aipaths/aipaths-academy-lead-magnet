@@ -1,0 +1,7 @@
+# Credenciales y datos privados: nunca a GitHub
+.credenciales/
+.env
+
+# Tus datos de negocio. Sacá estas líneas sólo si el repo es privado y querés guardarlos.
+facturas/*.pdf
+mails/
