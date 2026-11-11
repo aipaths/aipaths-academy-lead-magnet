@@ -17,6 +17,7 @@ concreto que está acá: si venís de uno de esos, abrí directo su carpeta.
 | [Un 2do Cerebro, pero para mis agentes](https://www.youtube.com/watch?v=AH-V_uF_EJo&list=PLItELtCfBA39BbCy0gS8eO2OGn5xEO_cB) | `kits/segundo-cerebro/` | la estructura de carpetas del video: los 4 archivos, el journal, el índice y el backup |
 | [Claude ya puede hacer un video entero](https://www.youtube.com/watch?v=MNeqNsd5Os8&list=PLItELtCfBA39BbCy0gS8eO2OGn5xEO_cB) | `kits/produccion-video/` | el paso a paso de cada etapa, la skill `editor-de-video`, los componentes de edición con su sonido y los prompts de capítulos y descripción |
 | Curso de agentes de IA desde cero | `kits/curso-agentes/` | la carpeta del asistente personal: `AGENTS.md`, los puentes para cada IA, 4 skills, las herramientas de Google y el paso a paso para conectarlo |
+| Cómo diseñar en Figma con Claude Code *(próximamente)* | `kits/figma-claude-code/` | los 3 prompts: descubrir tu marca, conectar Claude Code a Figma gratis y armar el manual en Figma |
 | Claude + Blender *(próximamente)* | `skills/claude-blender/` | la skill para manejar Blender desde Claude: renders de producto, física, logo 3D y tracking |
 
 Salvo el curso, los videos están en la playlist [Claude Code para Emprendedores](https://www.youtube.com/playlist?list=PLItELtCfBA39BbCy0gS8eO2OGn5xEO_cB).
@@ -133,6 +134,7 @@ Más dos archivos en la raíz: `metodo.md` (cómo se escribe un prompt que funci
 |---|---|
 | `motion-graphics/` | paso a paso, `CLAUDE.md`, plantillas de brief y storyboard, y el proyecto de una intro de 20 s en HyperFrames |
 | `segundo-cerebro/` | la estructura del 2do cerebro: agente de 4 archivos, journal diario, bóveda con índice y backup en GitHub |
+| `figma-claude-code/` | descubrir tu marca sin saber de diseño, conectar Claude Code a Figma gratis y el manual en Figma |
 | `curso-agentes/` | el asistente personal del curso: `AGENTS.md`, 4 skills propias, herramientas de Gmail, Calendar y Sheets, y los pasos para conectar Google y un tablero |
 
 Los kits sí traen código y necesitan sus herramientas (el `LEEME.md` de cada uno dice
