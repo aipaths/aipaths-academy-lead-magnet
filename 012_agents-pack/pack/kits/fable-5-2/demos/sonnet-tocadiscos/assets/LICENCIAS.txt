@@ -1,0 +1,4 @@
+Texturas de madera "Wood Table 001" (wood_*_2k.jpg): Poly Haven, CC0. https://polyhaven.com/a/wood_table_001
+HDRI "Brown Photostudio 02" (brown_photostudio_02_2k.hdr): Poly Haven, CC0. https://polyhaven.com/a/brown_photostudio_02
+Three.js r170 (vendor/): MIT, ver vendor/LICENSE-three.
+El resto de las texturas (slipmat, plato, vinilo, etiqueta, serigrafía) se generan por código.

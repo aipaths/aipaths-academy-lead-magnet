@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="./favicon.svg" type="image/svg+xml">
+<title>Grúa sobre orugas con almeja</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #9fb3c8; overflow: hidden; font-family: -apple-system, system-ui, sans-serif; }
+  canvas { display: block; }
+  #hud { position: fixed; left: 14px; bottom: 12px; color: #fff; font-size: 12px; line-height: 1.5; text-shadow: 0 1px 3px #000a; pointer-events: none; }
+  #hud b { display: inline-block; min-width: 54px; }
+  #fps { position: fixed; right: 12px; top: 10px; color: #fff; font: 12px ui-monospace, monospace; text-shadow: 0 1px 3px #000a; }
+  .timelapse #hud, .timelapse #fps { display: none; }
+</style>
+<script type="importmap">{ "imports": { "three": "./vendor/three.module.js" } }</script>
+</head>
+<body>
+<div id="hud"></div>
+<div id="fps"></div>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
