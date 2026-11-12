@@ -85,10 +85,10 @@ El pack es uno solo y lo dejo en muchos videos. Algunos enseñan algo concreto q
 | [Un 2do Cerebro, pero para mis agentes](https://www.youtube.com/watch?v=AH-V_uF_EJo&list=PLItELtCfBA39BbCy0gS8eO2OGn5xEO_cB) | `kits/segundo-cerebro/` | Los 4 archivos del agente, el journal, el índice y el backup |
 | [Claude ya puede hacer un video entero](https://www.youtube.com/watch?v=MNeqNsd5Os8&list=PLItELtCfBA39BbCy0gS8eO2OGn5xEO_cB) | `kits/produccion-video/` | El paso a paso de cada etapa, la skill `editor-de-video`, los componentes y los prompts de publicación |
 | Curso de agentes de IA desde cero | `kits/curso-agentes/` | La plantilla del asistente personal, sus skills y los pasos para conectar Google y un tablero |
-| Claude Fable 5.2 *(próximamente)* | `kits/fable-5-2/` | Los prompts del tocadiscos y la grúa, la plantilla para tu producto y las 6 demos 3D para correr |
+| [Claude Fable 5.2 armó esto en 26 minutos](https://www.youtube.com/watch?v=te5jGNPVAQc&list=PLItELtCfBA39ig81F5j9wcMqclkhfdKaL) | `kits/fable-5-2/` | Los prompts del tocadiscos y la grúa, la plantilla para tu producto y las 6 demos 3D para correr |
 | Claude + Blender *(próximamente)* | `skills/claude-blender/` | La skill para manejar Blender desde Claude |
 
-Salvo el curso, todos están en la playlist [Claude Code para Emprendedores](https://www.youtube.com/playlist?list=PLItELtCfBA39BbCy0gS8eO2OGn5xEO_cB). Cuando un video deja algo nuevo, aparece acá.
+Salvo el curso y el de Claude Fable 5.2, todos están en la playlist [Claude Code para Emprendedores](https://www.youtube.com/playlist?list=PLItELtCfBA39BbCy0gS8eO2OGn5xEO_cB). Cuando un video deja algo nuevo, aparece acá.
 
 ## Los 8 Especialistas
 

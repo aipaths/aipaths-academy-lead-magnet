@@ -1,6 +1,6 @@
 # Claude Fable 5.2: demos 3D hechas sólo con código
 
-> Viene del video **Claude Fable 5.2** *(próximamente)*.
+> Viene del video **[Claude Fable 5.2 armó esto en 26 minutos](https://www.youtube.com/watch?v=te5jGNPVAQc&list=PLItELtCfBA39ig81F5j9wcMqclkhfdKaL)**.
 > Más videos con su parte del pack: `../../README.md` → "¿Venís de un video?".
 
 Los prompts tal cual se los pasé a Claude Fable 5.2 en el video, con el resultado de cada uno.
