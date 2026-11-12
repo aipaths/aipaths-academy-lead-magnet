@@ -1,0 +1,5 @@
+Texturas y cielo: Poly Haven (https://polyhaven.com), licencia CC0 (dominio público).
+- dry_ground_01 (suelo seco), brown_mud_02 (tierra removida), rusty_metal_02 (almeja, caja del camión, tejas),
+  metal_plate (rugosidad/normales de la pintura), kloofendal_48d_partly_cloudy_puresky (cielo HDR 1k).
+Three.js r170 (vendor/): licencia MIT.
+Todo lo demás (modelos, sonido, rótulos) está generado por código en js/.
