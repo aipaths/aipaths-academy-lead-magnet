@@ -7,7 +7,7 @@ locale: "es"
 
 # SEO & Display
 title: "Agents Pack: 8 Agentes, 12 Skills y 114 Prompts"
-description: "Agentes especialistas, skills y una librería de prompts en markdown plano. Andan en Claude Code, Codex, Cursor, OpenClaw o el harness que uses. Incluye los kits de los videos: motion graphics con código, el 2do cerebro para tus agentes, la producción de un video con agentes, la plantilla del curso de agentes, las demos 3D de Claude Fable 5.2 y la skill de Claude + Blender."
+description: "Agentes especialistas, skills y una librería de prompts en markdown plano. Andan en Claude Code, Codex, Cursor, OpenClaw o el harness que uses. Incluye los kits de los videos: motion graphics con código, el 2do cerebro para tus agentes, la producción de un video con agentes, la plantilla del curso de agentes, las demos 3D de Claude Fable 5.2, los prompts para diseñar en Figma con Claude Code y la skill de Claude + Blender."
 
 # Category and taxonomy
 category: "ai-agents"
@@ -51,6 +51,8 @@ files:
     description: La estructura del 2do cerebro para tus agentes, lista para llenar
   - path: pack/kits/produccion-video/
     description: El paso a paso para producir un video con agentes, los componentes de edición y los prompts de publicación
+  - path: pack/kits/figma-claude-code/
+    description: Los 3 prompts para diseñar en Figma con Claude Code con tu marca, la plantilla del perfil y un ejemplo
   - path: pack/kits/curso-agentes/
     description: La plantilla del curso de agentes, un asistente personal listo para llenar y conectar a Google
   - path: pack/kits/fable-5-2/
@@ -72,6 +74,7 @@ files:
 - **El kit del 2do cerebro**: la estructura de carpetas para que tus agentes tengan memoria propia
 - **El kit de producción de video**: cada etapa de un video con agentes, la skill que edita, componentes con su sonido y prompts de capítulos y descripción
 - **El kit del curso de agentes**: la carpeta del asistente personal, con 4 skills propias y los pasos para conectar Google y un tablero
+- **El kit de Figma con Claude Code**: descubrir tu marca sin saber de diseño, conectar Claude Code a Figma gratis y armar el manual en Figma
 - **Las demos 3D de Claude Fable 5.2**: los prompts del tocadiscos y la grúa, una plantilla para tu producto y el código de las 6 demos
 - **La skill de Claude + Blender**: renders de producto, física, logo 3D y tracking sobre video real
 
@@ -85,6 +88,7 @@ El pack es uno solo y lo dejo en muchos videos. Algunos enseñan algo concreto q
 | [Un 2do Cerebro, pero para mis agentes](https://www.youtube.com/watch?v=AH-V_uF_EJo&list=PLItELtCfBA39BbCy0gS8eO2OGn5xEO_cB) | `kits/segundo-cerebro/` | Los 4 archivos del agente, el journal, el índice y el backup |
 | [Claude ya puede hacer un video entero](https://www.youtube.com/watch?v=MNeqNsd5Os8&list=PLItELtCfBA39BbCy0gS8eO2OGn5xEO_cB) | `kits/produccion-video/` | El paso a paso de cada etapa, la skill `editor-de-video`, los componentes y los prompts de publicación |
 | Curso de agentes de IA desde cero | `kits/curso-agentes/` | La plantilla del asistente personal, sus skills y los pasos para conectar Google y un tablero |
+| Cómo diseñar en Figma con Claude Code *(próximamente)* | `kits/figma-claude-code/` | Los 3 prompts: descubrir tu marca, conectar Claude Code a Figma gratis y armar el manual en Figma |
 | [Claude Fable 5.2 armó esto en 26 minutos](https://www.youtube.com/watch?v=te5jGNPVAQc&list=PLItELtCfBA39ig81F5j9wcMqclkhfdKaL) | `kits/fable-5-2/` | Los prompts del tocadiscos y la grúa, la plantilla para tu producto y las 6 demos 3D para correr |
 | Claude + Blender *(próximamente)* | `skills/claude-blender/` | La skill para manejar Blender desde Claude |
 
@@ -176,6 +180,16 @@ La carpeta del asistente personal del curso, vacía y lista para llenar con tus 
 
 No trae los datos inventados del video: arranca vacía para que cargues los tuyos.
 
+## El Kit de Figma con Claude Code
+
+Para que Claude Code diseñe en tu Figma con tu marca, aunque no sepas de diseño. Funciona con Figma gratis.
+
+| Qué | Para qué |
+|---|---|
+| `1-descubrir-tu-marca.md` | En un chat de Claude: te muestra tarjetas, reaccionás y sale tu perfil de marca |
+| `2-conectar-claude-code-a-figma.md` | Instala el plugin gratis Figma Desktop Bridge sólo en la carpeta de tu marca |
+| `3-manual-en-figma.md` | El manual en Figma con colores atados a variables, modo claro y oscuro, y cómo pedirle piezas |
+| `perfil-de-marca.md` | La plantilla del perfil, más el de AIPaths como ejemplo |
 ## Las Demos 3D de Claude Fable 5.2
 
 El mismo prompt en Claude Fable 5.2, Opus 5.5 y Sonnet 5.5 para armar dos demos 3D web con Three.js, todo con código: un tocadiscos Technics SL-1200 MK7 y una grúa con almeja.
