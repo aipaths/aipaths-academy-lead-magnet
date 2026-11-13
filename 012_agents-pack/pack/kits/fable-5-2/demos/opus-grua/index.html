@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grúa con almeja · Liebherr HS 8100 (Opus 5.5)</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="estilo.css">
+<script type="importmap">
+{ "imports": { "three": "./vendor/three.module.js", "three/addons/": "./vendor/addons/" } }
+</script>
+</head>
+<body>
+<canvas id="lienzo"></canvas>
+<div id="hud" class="oculto">
+  <div id="titulo">Liebherr HS 8100 · almeja de 2 cables</div>
+  <div id="datos"></div>
+  <div id="ayuda">
+    <b>Cabina</b> ← → &nbsp; <b>Pluma</b> ↑ ↓ &nbsp; <b>Cable</b> R sube · F baja<br>
+    <b>Almeja</b> Espacio abre/cierra &nbsp; <b>Orugas</b> W S avanzan · A D giran<br>
+    <b>Cámara</b> C cambia · mouse para mirar &nbsp; <b>Sonido</b> M
+  </div>
+</div>
+<div id="fps" class="oculto"></div>
+<div id="inicio" class="oculto"><button id="btn-inicio">Arrancar el motor</button></div>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

@@ -7,7 +7,7 @@ locale: "es"
 
 # SEO & Display
 title: "Agents Pack: 8 Agentes, 12 Skills y 114 Prompts"
-description: "Agentes especialistas, skills y una librería de prompts en markdown plano. Andan en Claude Code, Codex, Cursor, OpenClaw o el harness que uses. Incluye los kits de los videos: motion graphics con código, el 2do cerebro para tus agentes, la producción de un video con agentes, la plantilla del curso de agentes, los prompts para diseñar en Figma con Claude Code y la skill de Claude + Blender."
+description: "Agentes especialistas, skills y una librería de prompts en markdown plano. Andan en Claude Code, Codex, Cursor, OpenClaw o el harness que uses. Incluye los kits de los videos: motion graphics con código, el 2do cerebro para tus agentes, la producción de un video con agentes, la plantilla del curso de agentes, las demos 3D de Claude Fable 5.2, los prompts para diseñar en Figma con Claude Code y la skill de Claude + Blender."
 
 # Category and taxonomy
 category: "ai-agents"
@@ -23,19 +23,19 @@ tags:
 
 # Metadata
 difficulty: "intermediate"
-version: "1.4.0"
+version: "1.5.0"
 published: true
 coverImage: "/images/resources/012_agents-pack/thumb.png"
 order: 12
-lastUpdated: "2026-11-06"
+lastUpdated: "2026-11-12"
 author: "AIPaths Academy"
-downloadSize: "1.6 MB"
+downloadSize: "3.4 MB"
 estimatedSetupTime: "5 minutos"
 
 # Prerequisites
 prerequisites:
   - Un agente de código, el que uses (Claude Code, Codex, Cursor, OpenClaw, Gemini CLI)
-  - Nada más, es todo markdown plano (los kits de motion y de producción de video necesitan Node y FFmpeg; la skill de Blender, Blender con el MCP mcp-for-blender; las herramientas de Google del kit del curso, Node)
+  - Nada más, es todo markdown plano (los kits de motion y de producción de video necesitan Node y FFmpeg; la skill de Blender, Blender con el MCP mcp-for-blender; las herramientas de Google del kit del curso, Node; las demos 3D, Python 3 y un navegador)
 
 # Files included
 files:
@@ -55,6 +55,8 @@ files:
     description: Los 3 prompts para diseñar en Figma con Claude Code con tu marca, la plantilla del perfil y un ejemplo
   - path: pack/kits/curso-agentes/
     description: La plantilla del curso de agentes, un asistente personal listo para llenar y conectar a Google
+  - path: pack/kits/fable-5-2/
+    description: Los prompts del video de Claude Fable 5.2 y las 6 demos 3D (Fable, Opus y Sonnet), con el script que baja las texturas
   - path: pack/prompts/
     description: 114 prompts por dominio, más el método para escribir los tuyos
   - path: pack/README.md
@@ -73,6 +75,7 @@ files:
 - **El kit de producción de video**: cada etapa de un video con agentes, la skill que edita, componentes con su sonido y prompts de capítulos y descripción
 - **El kit del curso de agentes**: la carpeta del asistente personal, con 4 skills propias y los pasos para conectar Google y un tablero
 - **El kit de Figma con Claude Code**: descubrir tu marca sin saber de diseño, conectar Claude Code a Figma gratis y armar el manual en Figma
+- **Las demos 3D de Claude Fable 5.2**: los prompts del tocadiscos y la grúa, una plantilla para tu producto y el código de las 6 demos
 - **La skill de Claude + Blender**: renders de producto, física, logo 3D y tracking sobre video real
 
 ## ¿Venís de un video?
@@ -86,9 +89,10 @@ El pack es uno solo y lo dejo en muchos videos. Algunos enseñan algo concreto q
 | [Claude ya puede hacer un video entero](https://www.youtube.com/watch?v=MNeqNsd5Os8&list=PLItELtCfBA39BbCy0gS8eO2OGn5xEO_cB) | `kits/produccion-video/` | El paso a paso de cada etapa, la skill `editor-de-video`, los componentes y los prompts de publicación |
 | Curso de agentes de IA desde cero | `kits/curso-agentes/` | La plantilla del asistente personal, sus skills y los pasos para conectar Google y un tablero |
 | Cómo diseñar en Figma con Claude Code *(próximamente)* | `kits/figma-claude-code/` | Los 3 prompts: descubrir tu marca, conectar Claude Code a Figma gratis y armar el manual en Figma |
+| [Claude Fable 5.2 armó esto en 26 minutos](https://www.youtube.com/watch?v=te5jGNPVAQc&list=PLItELtCfBA39ig81F5j9wcMqclkhfdKaL) | `kits/fable-5-2/` | Los prompts del tocadiscos y la grúa, la plantilla para tu producto y las 6 demos 3D para correr |
 | Claude + Blender *(próximamente)* | `skills/claude-blender/` | La skill para manejar Blender desde Claude |
 
-Salvo el curso, todos están en la playlist [Claude Code para Emprendedores](https://www.youtube.com/playlist?list=PLItELtCfBA39BbCy0gS8eO2OGn5xEO_cB). Cuando un video deja algo nuevo, aparece acá.
+Salvo el curso y el de Claude Fable 5.2, todos están en la playlist [Claude Code para Emprendedores](https://www.youtube.com/playlist?list=PLItELtCfBA39BbCy0gS8eO2OGn5xEO_cB). Cuando un video deja algo nuevo, aparece acá.
 
 ## Los 8 Especialistas
 
@@ -186,6 +190,17 @@ Para que Claude Code diseñe en tu Figma con tu marca, aunque no sepas de diseñ
 | `2-conectar-claude-code-a-figma.md` | Instala el plugin gratis Figma Desktop Bridge sólo en la carpeta de tu marca |
 | `3-manual-en-figma.md` | El manual en Figma con colores atados a variables, modo claro y oscuro, y cómo pedirle piezas |
 | `perfil-de-marca.md` | La plantilla del perfil, más el de AIPaths como ejemplo |
+## Las Demos 3D de Claude Fable 5.2
+
+El mismo prompt en Claude Fable 5.2, Opus 5.5 y Sonnet 5.5 para armar dos demos 3D web con Three.js, todo con código: un tocadiscos Technics SL-1200 MK7 y una grúa con almeja.
+
+| Qué | Para qué |
+|---|---|
+| `LEEME.md` | Los prompts exactos, la plantilla para tu producto, lo que aprendí y cómo correr cada demo |
+| `demos/` | Las 6 demos (`fable-`, `opus-` y `sonnet-` tocadiscos y grúa), con minutos y costo de cada una |
+| `bajar-assets.sh` | En cada demo: baja de Poly Haven las texturas y el cielo que usa, así el pack no pesa 68 MB de más |
+
+Se corren con `python3 -m http.server 8800` adentro de la carpeta y se abren en `http://localhost:8800`.
 
 ## La Skill de Claude + Blender
 

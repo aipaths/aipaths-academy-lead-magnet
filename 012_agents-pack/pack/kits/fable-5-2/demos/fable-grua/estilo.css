@@ -1,0 +1,17 @@
+html, body { margin: 0; height: 100%; overflow: hidden; background: #1c1a17; }
+#lienzo { display: block; width: 100vw; height: 100vh; }
+#interfaz { position: fixed; inset: 0; pointer-events: none; color: #f3efe6;
+  font: 500 13px/1.45 -apple-system, "Helvetica Neue", Arial, sans-serif; }
+body.timelapse #interfaz { display: none; }
+.panel { position: absolute; background: rgba(22, 20, 17, .62); backdrop-filter: blur(6px); border-radius: 10px; padding: 12px 14px; }
+.estado { top: 16px; left: 16px; display: grid; gap: 3px; min-width: 230px; }
+.estado b { font-size: 14px; letter-spacing: .01em; }
+.estado span:empty { display: none; }
+#i-aviso { color: #f0b64a; }
+.barra { height: 5px; border-radius: 3px; background: rgba(255, 255, 255, .16); overflow: hidden; margin: 4px 0 2px; }
+.barra i { display: block; height: 100%; width: 0; background: #f0a020; }
+.teclas { bottom: 16px; left: 16px; }
+.teclas p { margin: 3px 0; color: #d8d2c6; }
+kbd { display: inline-block; min-width: 15px; text-align: center; padding: 1px 5px; margin-right: 4px; border-radius: 4px; background: #f3efe6; color: #1c1a17; font: 600 11px/1.5 ui-monospace, Menlo, monospace; }
+.fps { top: 16px; right: 16px; font: 600 13px ui-monospace, Menlo, monospace; }
+.arranque { position: absolute; left: 50%; bottom: 26px; transform: translateX(-50%); background: #f0a020; color: #1c1a17; font-weight: 600; padding: 9px 16px; border-radius: 999px; }

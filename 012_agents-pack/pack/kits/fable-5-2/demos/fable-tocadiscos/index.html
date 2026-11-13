@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Technics SL-1200 MK7 · 3D interactivo</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="importmap">{ "imports": { "three": "./vendor/three.module.min.js" } }</script>
+</head>
+<body>
+  <canvas id="escena"></canvas>
+
+  <header class="titulo">
+    <h1>Technics SL-1200 MK7</h1>
+    <p>Tocadiscos de tracción directa · modelo 3D hecho con código</p>
+  </header>
+
+  <div id="fps" hidden></div>
+  <div id="estado" class="chip">Detenido</div>
+
+  <div id="cartel" class="cartel"><b></b><span></span></div>
+
+  <footer class="barra">
+    <button id="play" class="principal">▶ Reproducir</button>
+    <div class="grupo" role="group" aria-label="Velocidad">
+      <button id="v33" class="activo">33</button>
+      <button id="v45">45</button>
+    </div>
+    <span class="sep"></span>
+    <button id="desarmar">Desarmar</button>
+    <input id="despiece" type="range" min="0" max="1" step="0.001" value="0" aria-label="Despiece">
+    <span class="sep"></span>
+    <button id="tapa">Cerrar tapa</button>
+    <button id="disco">Quitar disco</button>
+    <span class="sep"></span>
+    <label class="vol">Vol <input id="volumen" type="range" min="0" max="1" step="0.01" value="0.85"></label>
+  </footer>
+
+  <p class="ayuda">Arrastrá para girar · ruedita para acercar · pasá el mouse por las piezas · los botones del equipo se pueden apretar</p>
+
+  <div id="carga" class="carga">Cargando…</div>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+html, body { margin: 0; height: 100%; overflow: hidden; background: #b9c3c9; user-select: none; -webkit-user-select: none; }
+canvas { display: block; width: 100vw; height: 100vh; }
+.oculto { display: none !important; }
+#hud { position: fixed; left: 18px; bottom: 16px; color: #f4f1ea; font: 13px/1.45 -apple-system, "Helvetica Neue", sans-serif;
+  background: rgba(20, 22, 24, .55); padding: 10px 14px; border-radius: 8px; backdrop-filter: blur(4px); max-width: 520px; }
+#titulo { font-weight: 600; letter-spacing: .02em; margin-bottom: 4px; }
+#datos { font-variant-numeric: tabular-nums; margin-bottom: 6px; opacity: .9; }
+#ayuda { opacity: .75; }
+#fps { position: fixed; right: 12px; top: 10px; color: #fff; font: 600 14px/1 ui-monospace, monospace; background: rgba(0,0,0,.5);
+  padding: 6px 8px; border-radius: 6px; font-variant-numeric: tabular-nums; }
+#inicio { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(10,12,14,.25); }
+#btn-inicio { font: 600 18px -apple-system, sans-serif; padding: 14px 26px; border-radius: 10px; border: 0; background: #f2c300; color: #1b1b1b; cursor: pointer; }

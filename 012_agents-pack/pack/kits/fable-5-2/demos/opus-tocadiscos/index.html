@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Technics SL-1200MK7 · 3D</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="css/estilo.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "./vendor/three.module.min.js",
+          "three/addons/": "./vendor/addons/"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <canvas id="lienzo"></canvas>
+
+    <header class="titulo">
+      <h1>Technics SL-1200MK7</h1>
+      <p>Réplica 3D a escala real · arrastrá para girar, rueda para acercar</p>
+    </header>
+
+    <div id="cargando">Cargando texturas…</div>
+
+    <nav class="controles">
+      <button id="btn-play" type="button"><span class="ico">▶</span> <span class="txt">Play</span></button>
+      <button id="btn-desarmar" type="button">Desarmar</button>
+      <button id="btn-tapa" type="button">Cerrar tapa</button>
+      <button id="btn-vista" type="button">Vista cenital</button>
+      <label class="pitch"
+        >Pitch <input id="pitch" type="range" min="-8" max="8" step="0.1" value="0" /><output id="pitch-val">0,0 %</output></label
+      >
+    </nav>
+
+    <div id="etiqueta" hidden><strong></strong><span></span></div>
+    <div id="fps" hidden></div>
+
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>
