@@ -1,20 +1,24 @@
 # Revisión y entrega
 
-## Revisar por clips numerados
+## Revisar por bloque, con la lista de qué cambió
 
-Mandar el video entero para revisar no sirve: quien revisa no sabe dónde están los cambios y
-no puede dar feedback exacto.
+Mandar el video entero sin más no sirve: quien revisa no sabe dónde están los cambios.
+Tampoco un clip suelto por cambio: se pierde el contexto de la voz y la cantidad de archivos
+abruma.
 
-- **Un clip por cambio**, sólo ese tramo con 1–3 s de contexto antes y después, **con sonido**.
-- **Numerados dentro de la versión:** `v02.1_titulo-intro.mp4`, `v02.2_dato-precio.mp4`…
-  La respuesta llega como «en la v02.3 el pop está alto» y se corrige o se cierra.
-- **Una carpeta por ronda** (`v02/`, `v03/`…). Lo que se corrige de una ronda no se agrega a
-  su carpeta: va a la siguiente, renumerado. Así se revisa una versión a la vez.
-- **Un LEEME por carpeta:** qué mirar en cada número, en qué minuto del video y qué hay que
-  decidir.
-- Si varios agentes arman piezas en paralelo, el que orquesta les asigna el número y junta
-  todo. Los renders, en serie o con un lock por archivo (`mkdir` es atómico); nunca esperar
-  con `pgrep -f`, que puede encontrar el propio shell.
+- **Un archivo por bloque** (un capítulo, varios o el video entero), con todos los cambios
+  puestos y **con sonido**. En las rondas de corrección también: el bloque entero, no parches.
+- **Una lista corta de qué cambió, con el minuto de cada cambio.** Es lo que le dice a la
+  persona qué mirar.
+- **Cada ronda es una versión nueva** (`v02/`, `v03/`…), renumerada; no se suma a una que ya
+  vio.
+- **Antes de la persona, el revisor sin contexto** (`revisor-sin-contexto.md`). Sólo llega lo que
+  devolvió A REVISAR.
+- **Lo que la persona tiene que decidir va en la charla,** no adentro de un archivo.
+- **Cada comentario se anota** con su segundo en `registro-de-correcciones.md`.
+- Si varios agentes arman bloques en paralelo, uno coordina: asigna los números, revisa cada
+  bloque contra el transcript y recién ahí lo publica. Los renders, en serie o con un lock por
+  archivo (`mkdir` es atómico); nunca esperar con `pgrep -f`, que puede encontrar el propio shell.
 
 ## Final
 

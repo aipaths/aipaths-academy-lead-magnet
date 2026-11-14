@@ -77,3 +77,15 @@ fuerte pero no sube lo bajo; a −14 hay que limitar mucho los picos de una voz 
 3. Medí con `ebur128=peak=true` y ajustá `X` hasta −16,0 LUFS integrados con el true peak
    ≤ −1,5 dBTP. Dos o tres vueltas alcanzan.
 4. Volvé a medir el archivo final exportado, no sólo el WAV.
+
+## Aprobado y descartado
+
+- **Aprobado:** un pop cuando algo aparece con rebote, un whoosh que acompaña un deslizamiento,
+  una música propia por debajo de la voz con fade, un efecto de volumen bajo que sólo se nota
+  si falta.
+- **Descartado:** risers para anticipar, whooshes agudos y secos, música
+  que sube y baja con cada pausa, efectos sobre una voz de demo, un sonido que aparece sin que se
+  mueva nada en pantalla.
+- **Música propia:** un modelo local de generación permite una pista sin derechos; elegí un
+  estilo (cálido, sin voz, sin letra), fijá la semilla y el prompt y guardalos con el video para
+  repetir el sonido de todos.
