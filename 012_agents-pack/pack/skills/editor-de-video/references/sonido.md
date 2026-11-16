@@ -11,6 +11,7 @@ Antes de elegir un efecto, mirá cómo se mueve lo que lo dispara y a qué veloc
 | Corte duro que cambia de sección | whoosh, con el pico en el corte y dentro de un silencio |
 | Título que sube y se asienta | whoosh grave, bajo si va debajo de la voz |
 | Zoom animado sobre la pantalla | whoosh muy bajito, pico en el centro del zoom |
+| Algo importante está por decirse | riser: sube mientras todavía se habla, termina con la última palabra y deja la pausa en silencio |
 | Fundido lento | nada: un whoosh rápido sobre un fundido desentona |
 | Click que arranca o corta algo que importa (una demo de audio) | click al principio y al final, como comillas |
 
@@ -19,9 +20,22 @@ Antes de elegir un efecto, mirá cómo se mueve lo que lo dispara y a qué veloc
 - **El tamaño del sonido sigue al tamaño del movimiento.** Un deslizamiento chico no suena
   como un recuadro que aparece. Los whooshes graves y que crecen de a poco suelen pasar
   mejor que los agudos y secos.
-- **Nada de risers ni platillos al revés** para anticipar.
+- **Riser: sólo antes de algo que tiene que captar la atención,** uno por tramo. Sube mientras
+  todavía se está hablando y termina (sin cola) con la última palabra de la frase: la pausa
+  que sigue queda en silencio, y ese silencio es lo que hace pegar a la palabra de después. Si hay música, se baja o se corta antes.
+  Un barrido de ruido o un tono que sube sirve; un platillo al revés, no.
+- **Whoosh hacia un costado sólo si algo entra** en el lugar que queda libre.
 - **Separación:** nada a menos de ~1 s de otro efecto, ni sobre una voz de demo, ni sobre un
   corte escondido (ver `mapa-del-corte.md`).
+
+### La biblioteca, medida
+
+El agente no escucha: lo que no está en texto, no lo ve. Armá una biblioteca corta (10 pops,
+10 whooshes y 10 risers alcanzan) y que el agente mida cada archivo y anote en una tabla
+cuánto dura, cuándo arranca, dónde está el pico y qué tan fuerte suena. Con esa tabla y el
+tiempo de cada palabra encuentra los huecos y el segundo justo de cada efecto: el pico del
+efecto cae en el movimiento, no el principio del archivo. Después se le pide que mire dónde
+aparece o se mueve algo y proponga qué sonido lleva cada cosa.
 
 ### Niveles
 
@@ -77,3 +91,15 @@ fuerte pero no sube lo bajo; a −14 hay que limitar mucho los picos de una voz 
 3. Medí con `ebur128=peak=true` y ajustá `X` hasta −16,0 LUFS integrados con el true peak
    ≤ −1,5 dBTP. Dos o tres vueltas alcanzan.
 4. Volvé a medir el archivo final exportado, no sólo el WAV.
+
+## Aprobado y descartado
+
+- **Aprobado:** un pop cuando algo aparece con rebote, un whoosh que acompaña un deslizamiento,
+  una música propia por debajo de la voz con fade, un efecto de volumen bajo que sólo se nota
+  si falta.
+- **Descartado:** platillos al revés, risers en cada frase, whooshes agudos y secos, música
+  que sube y baja con cada pausa, efectos sobre una voz de demo, un sonido que aparece sin que se
+  mueva nada en pantalla.
+- **Música propia:** un modelo local de generación (por ejemplo ACE-Step, gratis) permite una pista sin derechos; elegí un
+  estilo (cálido, sin voz, sin letra), fijá la semilla y el prompt y guardalos con el video para
+  repetir el sonido de todos.

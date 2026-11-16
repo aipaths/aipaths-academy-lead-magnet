@@ -19,6 +19,7 @@ concreto que está acá: si venís de uno de esos, abrí directo su carpeta.
 | Curso de agentes de IA desde cero | `kits/curso-agentes/` | la carpeta del asistente personal: `AGENTS.md`, los puentes para cada IA, 4 skills, las herramientas de Google y el paso a paso para conectarlo |
 | Cómo diseñar en Figma con Claude Code *(próximamente)* | `kits/figma-claude-code/` | los 3 prompts: descubrir tu marca, conectar Claude Code a Figma gratis y armar el manual en Figma |
 | [Claude Fable 5.2 armó esto en 26 minutos](https://www.youtube.com/watch?v=te5jGNPVAQc&list=PLItELtCfBA39ig81F5j9wcMqclkhfdKaL) | `kits/fable-5-2/` | los prompts del tocadiscos y la grúa, la plantilla para tu producto y las 6 demos 3D (Fable, Opus y Sonnet) para correr en el navegador |
+| Cómo edito mis videos con Claude Code *(próximamente)* | `kits/editar-con-claude-code/` | los 8 prompts de las cuatro capas, 30 efectos de sonido medidos, música sin copyright y la skill `editor-de-video` como base |
 | Claude + Blender *(próximamente)* | `skills/claude-blender/` | la skill para manejar Blender desde Claude: renders de producto, física, logo 3D y tracking |
 
 Salvo el curso y el de Claude Fable 5.2, los videos están en la playlist [Claude Code para Emprendedores](https://www.youtube.com/playlist?list=PLItELtCfBA39BbCy0gS8eO2OGn5xEO_cB).
@@ -137,6 +138,7 @@ Más dos archivos en la raíz: `metodo.md` (cómo se escribe un prompt que funci
 | `segundo-cerebro/` | la estructura del 2do cerebro: agente de 4 archivos, journal diario, bóveda con índice y backup en GitHub |
 | `figma-claude-code/` | descubrir tu marca sin saber de diseño, conectar Claude Code a Figma gratis y el manual en Figma |
 | `curso-agentes/` | el asistente personal del curso: `AGENTS.md`, 4 skills propias, herramientas de Gmail, Calendar y Sheets, y los pasos para conectar Google y un tablero |
+| `editar-con-claude-code/` | los 8 prompts del video de edición con Claude Code, 30 efectos de sonido con su tabla de mediciones y 3 pistas de música sin copyright |
 | `fable-5-2/` | los prompts de las demos 3D, una plantilla y el código de las 6 demos (tocadiscos y grúa en Fable 5.2, Opus 5.5 y Sonnet 5.5), con un script que baja las texturas de Poly Haven |
 
 Los kits sí traen código y necesitan sus herramientas (el `LEEME.md` de cada uno dice

@@ -14,7 +14,7 @@ qué te devuelve y qué sigue siendo tuyo.
 | `LEEME.md` | este paso a paso, etapa por etapa |
 | `prompts/capitulos-y-descripcion.md` | capítulos, descripción y tags a partir del transcript |
 | `componentes/` | piezas de edición listas: título de capítulo, tarjeta que carga valores, descripción de YouTube con capítulos y la transición con desenfoque, cada una con su sonido |
-| `../../skills/editor-de-video/` | la skill que edita: dónde va cada pieza, el sonido, la música, el volumen final y la revisión |
+| `../../skills/editor-de-video/` | la skill que edita por capas (corte y cámara, lo que tapa la cámara, texto, sonido), con catálogo de recursos, revisor sin contexto y registro de correcciones |
 
 ## Lo que necesitás
 
@@ -78,11 +78,13 @@ Tres cosas que después ahorran horas de edición:
 ### 5. La edición — Asistido
 El agente edita con la skill `editor-de-video` y los `componentes/`:
 1. Transcribe con whisper (tiempos por palabra) y arma el mapa del corte.
-2. Pone cada pieza en la palabra que la nombra: títulos de capítulo, datos, tarjetas, B-roll.
+2. Edita por capas, de a una y en este orden: corte y cámara, lo que tapa la cámara, texto en
+   pantalla y sonido. Cada pieza entra en la palabra que la nombra y sale del catálogo de recursos.
 3. Suma sonido (whoosh al entrar, pop al aparecer), música de fondo pareja y deja todo a −16 LUFS.
-4. **Te muestra sólo lo que cambió:** un clip corto por cambio, numerado (v02.1, v02.2…), con sonido.
-   Respondés «en la v02.3 corré el título» y se corrige en la versión siguiente.
-5. Con tu OK, exporta en 4K.
+4. Un segundo agente, sin contexto, revisa el bloque y lo aprueba (A REVISAR) o lo devuelve (VUELVE).
+5. **Te muestra sólo lo que cambió:** un archivo por bloque con la lista de qué cambió y el minuto
+   de cada cambio. Cada corrección tuya se anota y se vuelve regla.
+6. Con tu OK, exporta en 4K.
 
 ### 6. La publicación — Automático
 Como el agente editó el video, sabe exactamente dónde cambia cada etapa. Con el transcript arma

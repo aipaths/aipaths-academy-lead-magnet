@@ -39,6 +39,9 @@ Symlink mejor que copia: editás una vez y todos los harnesses ven el mismo arch
 con sus propias skills. El paso a paso completo y un proyecto de ejemplo están en
 `kits/motion-graphics/`.
 
+`editor-de-video` tiene su kit en `kits/editar-con-claude-code/`: los prompts de cada capa,
+30 efectos de sonido medidos y música sin copyright.
+
 `claude-blender` necesita Blender abierto con el MCP `mcp-for-blender` conectado; la
 instalación y sus trampas en macOS están en `claude-blender/references/setup.md`.
 

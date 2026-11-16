@@ -31,3 +31,6 @@ Los prompts compilados en `prompts/` provienen de material publicado como gratui
 por terceros, traducido al español. No se reclama autoría sobre ellos: cada archivo
 conserva su línea `Sources:` con el link al origen, y la atribución completa está en
 `prompts/SOURCES.md`.
+
+Los efectos de sonido y las pistas de música de `kits/editar-con-claude-code/` se ceden
+al dominio público (CC0): usalos sin atribución, en videos comerciales o no.
