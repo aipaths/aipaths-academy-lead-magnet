@@ -12,6 +12,12 @@ Si no mira a cámara, no va texto: va una imagen que tape (capa 2).
 
 ## Después: cuál
 
+Cuatro tipos cubren casi todo: **overlay** (arranca un tema nuevo: dos o tres palabras grandes
+al centro), **al costado** (enumerar, qué va a pasar o una idea que tiene que quedar, una línea
+por idea), **subtítulos** (una frase que tiene que quedar entera, palabra por palabra) y **frase
+al centro** (algo corto que pegue y se vaya: un nombre, un llamado). No se mezclan: si en el
+costado se escribe todo lo que se dice, se lee mal y tapa la imagen.
+
 Primero qué está diciendo, después qué recurso. Elegí por esta tabla, no por el que esté más a
 mano (cada recurso vive en tu catálogo, `catalogo-de-recursos.md`):
 

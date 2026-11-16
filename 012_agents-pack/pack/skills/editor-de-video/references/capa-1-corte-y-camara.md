@@ -15,24 +15,23 @@ está mal, todo lo que se pone arriba se ve mal. Esta capa se termina antes de t
 - **Corte desde el transcript.** Palabras con tiempo (`mapa-del-corte.md`), no a ojo: el agente
   decide sobre el texto y los silencios, y después se mira el resultado.
 - **Gana la última toma.** Si una frase está dicha dos veces, queda la última.
+- **Silencios: se cortan los de más de 1 s.** Con pausas de medio segundo hay cortes por todos
+  lados y se nota; esperando 1,5 s se escapan silencios que tenían que irse.
 - **No se corta adentro de lo dicho de corrido.** Un corte entre dos palabras que se pronuncian
   pegadas se oye como un tropiezo. Se corta en una pausa real o entre frases.
 - **Errores de la toma** («eeeh no», una frase repetida) se cortan aunque el resto quede igual.
 - **Antes de mover el borde de un corte, transcribí lo que entra.** Alargar uno sin escuchar
   puede meter un error que ya estaba cortado.
-- **Un corte deja un salto; se tapa con un punch-in** (un recorte más cerrado en el plano que
-  entra). Es el recurso más barato y el que mejor se sostiene.
-- **Los ojos del plano que entra caen donde estaban los del anterior**, medidos, no a ojo. Un
-  punch-in acomodado a ojo «se ve raro» aunque nadie sepa decir por qué.
+- **Un empalme a la vista se tapa con una pieza** (capa 2: B-roll o animación) que entra 2
+  cuadros antes del salto, no con un recorte automático que intente alinear los ojos entre
+  una toma y otra: da resultados inconsistentes.
 - **Tres tamaños de plano alcanzan:** abierto para explicar, medio para transiciones, cerrado
   para dos o tres momentos de impacto. Si todo es cerrado, nada lo es.
 - **Punch-in seco para la mayoría de los énfasis;** el zoom lento queda para momentos
   reflexivos.
-- **Si un empalme pide un punch-in muy grande, tapalo con una pieza** (capa 2) que arranque
-  un par de cuadros antes de que asome la cara.
 - **Salto de luz entre tomas** (noche → día): una transición con desenfoque y whoosh, no
   intentar emparejar el color.
-- **Empalmes y entradas son recursos, no hay uno favorito:** seco, con pausa, con punch-in, con
+- **Empalmes y entradas son recursos, no hay uno favorito:** seco, con pausa, con una pieza encima, con
   J/L cut, con fundido. Elegí por momento y avisá cuál usaste.
 - **Demo en vivo de pantalla: una toma continua.** No se le sacan silencios adentro: los saltos
   cortan la voz y la imagen. Si sobra, un solo corte limpio entre dos ideas.
@@ -40,7 +39,7 @@ está mal, todo lo que se pone arriba se ve mal. Esta capa se termina antes de t
 ## Descartado
 
 - Cortes que «limpian» silencios dentro de una demo hablada.
-- Punch-ins sin medir los ojos.
+- Un punch-in automático para alinear los ojos en un empalme.
 - Mini cortes visibles a cámara sin nada que los tape: un salto de un cuadro también cuenta.
 - Emparejar el color entre tomas de luz muy distinta.
 

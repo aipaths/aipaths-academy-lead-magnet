@@ -20,6 +20,13 @@ abruma.
   bloque contra el transcript y recién ahí lo publica. Los renders, en serie o con un lock por
   archivo (`mkdir` es atómico); nunca esperar con `pgrep -f`, que puede encontrar el propio shell.
 
+## Una página donde dejar los comentarios
+
+Para corregir, lo más cómodo es una página donde ver el video, poner pausa y escribir un
+comentario que queda pegado a ese segundo. Se le pide al agente que la arme. Como tiene el
+tiempo de cada palabra, sabe de qué estás hablando. Cada comentario va al registro de
+correcciones (`registro-de-correcciones.md`).
+
 ## Final
 
 1. Con todos los clips aprobados, el video entero en baja (720p) para el visto bueno completo.

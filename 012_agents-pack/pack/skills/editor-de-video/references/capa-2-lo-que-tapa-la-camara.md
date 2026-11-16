@@ -13,6 +13,17 @@ ocupar la imagen. Si lo que la tapa es genérico, el video parece hecho por IA.
 **Regla: si se puede mostrar lo real, va lo real.** Una animación que representa algo que
 tenías a un click de capturar se nota pobre.
 
+- **B-roll propio:** guardá los clips de lo que mostrás seguido (tu equipo, tu pantalla) en una
+  carpeta y explicale al agente qué es cada uno: después sabe dónde buscarlos. Si es un
+  producto en internet, una captura de su página también sirve.
+- **Animación en tres pasos:** el agente la escribe en código, como una página web; una
+  herramienta saca una captura de cada cuadro (HyperFrames); y ffmpeg une las capturas en un
+  video. Se explica una vez. Con las que te gustan se arma una carpeta de recursos, una
+  herramienta para las capturas, otra para las animaciones y el catálogo.
+- **Proponer antes de generar:** pedile que lea el guion con los tiempos, marque los momentos
+  que pueden llevar una imagen y qué pondría en cada uno. Se mira esa lista antes de crear
+  nada: ahorra mucho tiempo.
+
 ## Reglas aprobadas
 
 - **Si no mira a cámara, tapa una imagen o una animación; nunca texto solo.**
@@ -20,6 +31,9 @@ tenías a un click de capturar se nota pobre.
 - **La pieza entra cuando se nombra y se va cuando termina.** Apenas termina, vuelve a la cara.
 - **La pieza anticipa si mira para otro lado:** entra un poco antes de la palabra (J-cut), no
   después de que la mirada ya se fue.
+- **Una pieza que tapa un empalme entra 2 cuadros antes del salto.**
+- **Ningún movimiento hacia un costado si no entra nada en el lugar que deja libre.** Una
+  pieza que se corre y deja el hueco vacío se siente un error.
 - **Una app va en un recuadro de app con fondo,** igual que una terminal; no a pantalla completa.
 - **Una interfaz rehecha copia la real.** Medí colores, márgenes y proporciones en capturas de la
   app verdadera antes de armarla; un detalle inventado se nota. Si hay zoom, escala todo el

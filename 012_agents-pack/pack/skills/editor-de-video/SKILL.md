@@ -26,8 +26,8 @@ Cada capa se termina y se mira antes de pasar a la siguiente: una capa de arriba
 una de abajo.
 
 1. **Corte y cámara** → `references/capa-1-corte-y-camara.md`
-   Marcas al grabar, corte desde el transcript, gana la última toma, no se corta lo dicho de
-   corrido, punch-in con los ojos en el mismo lugar.
+   Marcas al grabar, corte desde el transcript, gana la última toma, silencios de más de 1 s,
+   no se corta lo dicho de corrido, un empalme a la vista se tapa con una pieza.
 2. **Lo que tapa la cámara** → `references/capa-2-lo-que-tapa-la-camara.md`
    B-roll (lo real, capturado) o animación (lo que no existe, hecho con código). Si se puede
    mostrar lo real, va lo real.
@@ -67,6 +67,9 @@ grabar, `references/grabar-para-editar.md`.
 - **Apenas termina un B-roll o una tarjeta, se vuelve a la cara.** Una tarjeta a pantalla
   completa no pasa de ~20 s.
 - **Nunca tapar lo que se está explicando** (la UI, el click que importa, el número).
+- **Ningún movimiento hacia un costado si no entra nada en el lugar que deja libre.** Una
+  pieza que se corre y deja el hueco vacío se siente un error; si no entra algo, que se quede
+  o que salga de otra forma.
 - **Una pieza que no aclara, prueba, enfatiza o da aire, sale.**
 - **Un recurso nuevo no se estrena en un video entero.** Se prueba solo y queda en el catálogo
   como candidato.
@@ -89,4 +92,5 @@ grabar, `references/grabar-para-editar.md`.
 
 `../../kits/produccion-video/` trae el paso a paso y componentes listos (transición con
 desenfoque y whoosh, título de capítulo, tarjeta que carga valores, descripción con
-capítulos). La skill funciona igual sin el kit.
+capítulos). `../../kits/editar-con-claude-code/` trae los prompts de cada capa, 30 efectos de
+sonido medidos y música sin copyright. La skill funciona igual sin los kits.
