@@ -102,8 +102,8 @@ Armame una biblioteca de 30 efectos de sonido: 10 pops, 10 whooshes y 10 risers.
 Los tres que más importan:
 - **Pop:** algo aparece con rebote.
 - **Whoosh:** algo entra de costado.
-- **Riser:** vas a decir algo importante y tiene que captar la atención. Arranca antes, sube
-  en la pausa y termina dejando que se sienta el silencio.
+- **Riser:** vas a decir algo importante y tiene que captar la atención. Sube mientras
+  todavía hablás, termina con tu última palabra y deja la pausa en silencio antes de lo que sigue.
 
 Con esa tabla y el tiempo de cada palabra, Claude encuentra los huecos entre palabras y el
 momento justo de cada efecto.
