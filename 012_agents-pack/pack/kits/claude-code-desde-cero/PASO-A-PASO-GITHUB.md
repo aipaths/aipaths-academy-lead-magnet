@@ -38,8 +38,7 @@ Fuente: [Creación de una cuenta en GitHub](https://docs.github.com/es/account-a
 En el video (13:18): una vez que tenés la cuenta, la podés conectar a Claude con, por ejemplo, un conector, y después le pedís que suba la carpeta.
 
 1. Abrí la carpeta de tu agente en la app de Claude, en la pestaña **Code**.
-2. Tocá el «+» que está al lado de donde escribís y entrá a **Connectors**. Desde **Browse connectors** se abre la lista completa: buscá GitHub ahí. Si tu app no muestra **Connectors**, mirá la nota de conectores en `LEEME.md`.
-3. Pedile esto:
+2. Pedile esto:
 
 ```text
 Subí esta carpeta a un repositorio privado de GitHub.
@@ -47,7 +46,7 @@ Subí esta carpeta a un repositorio privado de GitHub.
 
 Mientras trabaja te puede frenar para pedirte permiso, como en el resto del curso. Leé qué te pide antes de aceptar.
 
-En el video, la computadora ya tenía el acceso a GitHub configurado. Si en la tuya Claude te dice que le falta algo para subirla, pedile que te guíe. Este pedido no está en el video:
+En el video, la computadora ya tenía el acceso a GitHub configurado. En la tuya, la primera vez, Claude te va a decir que le falta conectar tu cuenta de GitHub. Pedile que te guíe. Este pedido no está en el video:
 
 ```text
 Decime qué te falta para subir esta carpeta a un repositorio privado de mi cuenta de GitHub y guiame paso a paso, sin usar la terminal.
