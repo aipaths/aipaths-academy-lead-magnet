@@ -46,7 +46,7 @@ Subí esta carpeta a un repositorio privado de GitHub.
 
 Mientras trabaja te puede frenar para pedirte permiso, como en el resto del curso. Leé qué te pide antes de aceptar.
 
-En el video, la computadora ya tenía el acceso a GitHub configurado. En la tuya, la primera vez, Claude te va a decir que le falta conectar tu cuenta de GitHub. Pedile que te guíe. Este pedido no está en el video:
+En el video, la computadora ya tenía el acceso a GitHub configurado. En la tuya, la primera vez, es probable que a Claude le falte el acceso a tu cuenta de GitHub. Si te lo dice, pedile que te guíe. Este pedido no está en el video:
 
 ```text
 Decime qué te falta para subir esta carpeta a un repositorio privado de mi cuenta de GitHub y guiame paso a paso, sin usar la terminal.
