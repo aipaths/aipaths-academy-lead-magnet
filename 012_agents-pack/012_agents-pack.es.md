@@ -57,6 +57,8 @@ files:
     description: La plantilla del curso de agentes, un asistente personal listo para llenar y conectar a Google
   - path: pack/kits/fable-5-2/
     description: Los prompts del video de Claude Fable 5.2 y las 6 demos 3D (Fable, Opus y Sonnet), con el script que baja las texturas
+  - path: pack/kits/claude-code-desde-cero/
+    description: La guía del curso de Claude Code desde cero, con los conceptos, los 12 prompts del video, el paso a paso de GitHub y la carpeta del agente investigador
   - path: pack/prompts/
     description: 114 prompts por dominio, más el método para escribir los tuyos
   - path: pack/README.md
@@ -74,6 +76,7 @@ files:
 - **El kit del 2do cerebro**: la estructura de carpetas para que tus agentes tengan memoria propia
 - **El kit de producción de video**: cada etapa de un video con agentes, la skill que edita, componentes con su sonido y prompts de capítulos y descripción
 - **El kit del curso de agentes**: la carpeta del asistente personal, con 4 skills propias y los pasos para conectar Google y un tablero
+- **El kit del curso de Claude Code**: la guía con los conceptos y los 12 prompts del video, el paso a paso de la cuenta de GitHub y la carpeta del agente investigador
 - **El kit de Figma con Claude Code**: descubrir tu marca sin saber de diseño, conectar Claude Code a Figma gratis y armar el manual en Figma
 - **Las demos 3D de Claude Fable 5.2**: los prompts del tocadiscos y la grúa, una plantilla para tu producto y el código de las 6 demos
 - **La skill de Claude + Blender**: renders de producto, física, logo 3D y tracking sobre video real
@@ -88,6 +91,7 @@ El pack es uno solo y lo dejo en muchos videos. Algunos enseñan algo concreto q
 | [Un 2do Cerebro, pero para mis agentes](https://www.youtube.com/watch?v=AH-V_uF_EJo&list=PLItELtCfBA39BbCy0gS8eO2OGn5xEO_cB) | `kits/segundo-cerebro/` | Los 4 archivos del agente, el journal, el índice y el backup |
 | [Claude ya puede hacer un video entero](https://www.youtube.com/watch?v=MNeqNsd5Os8&list=PLItELtCfBA39BbCy0gS8eO2OGn5xEO_cB) | `kits/produccion-video/` | El paso a paso de cada etapa, la skill `editor-de-video`, los componentes y los prompts de publicación |
 | Curso de agentes de IA desde cero | `kits/curso-agentes/` | La plantilla del asistente personal, sus skills y los pasos para conectar Google y un tablero |
+| [Curso de Claude Code desde cero 2027 (sin saber programar)](https://www.youtube.com/watch?v=O-PwfY1qSQ0&list=PLItELtCfBA39BbCy0gS8eO2OGn5xEO_cB) | `kits/claude-code-desde-cero/` | La guía con dónde bajar la app, los conceptos y los 12 prompts, el paso a paso de GitHub y la carpeta del agente investigador |
 | Cómo diseñar en Figma con Claude Code *(próximamente)* | `kits/figma-claude-code/` | Los 3 prompts: descubrir tu marca, conectar Claude Code a Figma gratis y armar el manual en Figma |
 | [Claude Fable 5.2 armó esto en 26 minutos](https://www.youtube.com/watch?v=te5jGNPVAQc&list=PLItELtCfBA39ig81F5j9wcMqclkhfdKaL) | `kits/fable-5-2/` | Los prompts del tocadiscos y la grúa, la plantilla para tu producto y las 6 demos 3D para correr |
 | Claude + Blender *(próximamente)* | `skills/claude-blender/` | La skill para manejar Blender desde Claude |
@@ -179,6 +183,20 @@ La carpeta del asistente personal del curso, vacía y lista para llenar con tus 
 | `PASO-A-PASO-TABLERO.md` | Conectar un tablero de tareas por MCP, con Linear de ejemplo |
 
 No trae los datos inventados del video: arranca vacía para que cargues los tuyos.
+
+## El Kit del Curso de Claude Code
+
+Lo que prometo en el video: dónde bajar la app para Mac y Windows, el paso a paso de la cuenta de GitHub, los conceptos más importantes, todos los prompts y los archivos del agente investigador. Todo se hace desde la pestaña Code de la app de Claude, sin terminal.
+
+| Qué | Para qué |
+|---|---|
+| `LEEME.md` | La guía en el orden del video: qué necesitás, los conceptos y los 12 prompts con su minuto |
+| `PASO-A-PASO-GITHUB.md` | Crear la cuenta de GitHub y pedirle a Claude Code que suba la carpeta a un repositorio privado |
+| `investigador/CLAUDE.md` | Las instrucciones del agente: sus dos modos, la memoria, la bitácora y sus reglas |
+| `investigador/.claude/skills/` | La skill `informe-de-investigacion`, tal como la guarda en el video |
+| `investigador/` | El resto de la carpeta: memoria, temas, plantillas y un informe de ejemplo |
+
+La carpeta se abre desde la pestaña Code. Si preferís armar la tuya desde cero como en el video, los prompts están en `LEEME.md`.
 
 ## El Kit de Figma con Claude Code
 

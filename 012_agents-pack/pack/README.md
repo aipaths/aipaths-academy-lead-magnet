@@ -17,6 +17,7 @@ concreto que está acá: si venís de uno de esos, abrí directo su carpeta.
 | [Un 2do Cerebro, pero para mis agentes](https://www.youtube.com/watch?v=AH-V_uF_EJo&list=PLItELtCfBA39BbCy0gS8eO2OGn5xEO_cB) | `kits/segundo-cerebro/` | la estructura de carpetas del video: los 4 archivos, el journal, el índice y el backup |
 | [Claude ya puede hacer un video entero](https://www.youtube.com/watch?v=MNeqNsd5Os8&list=PLItELtCfBA39BbCy0gS8eO2OGn5xEO_cB) | `kits/produccion-video/` | el paso a paso de cada etapa, la skill `editor-de-video`, los componentes de edición con su sonido y los prompts de capítulos y descripción |
 | Curso de agentes de IA desde cero | `kits/curso-agentes/` | la carpeta del asistente personal: `AGENTS.md`, los puentes para cada IA, 4 skills, las herramientas de Google y el paso a paso para conectarlo |
+| [Curso de Claude Code desde cero 2027 (sin saber programar)](https://www.youtube.com/watch?v=O-PwfY1qSQ0&list=PLItELtCfBA39BbCy0gS8eO2OGn5xEO_cB) | `kits/claude-code-desde-cero/` | la guía con dónde bajar la app, los conceptos y los 12 prompts, el paso a paso de GitHub y la carpeta del agente investigador |
 | Cómo diseñar en Figma con Claude Code *(próximamente)* | `kits/figma-claude-code/` | los 3 prompts: descubrir tu marca, conectar Claude Code a Figma gratis y armar el manual en Figma |
 | [Claude Fable 5.2 armó esto en 26 minutos](https://www.youtube.com/watch?v=te5jGNPVAQc&list=PLItELtCfBA39ig81F5j9wcMqclkhfdKaL) | `kits/fable-5-2/` | los prompts del tocadiscos y la grúa, la plantilla para tu producto y las 6 demos 3D (Fable, Opus y Sonnet) para correr en el navegador |
 | Claude + Blender *(próximamente)* | `skills/claude-blender/` | la skill para manejar Blender desde Claude: renders de producto, física, logo 3D y tracking |
@@ -135,6 +136,7 @@ Más dos archivos en la raíz: `metodo.md` (cómo se escribe un prompt que funci
 |---|---|
 | `motion-graphics/` | paso a paso, `CLAUDE.md`, plantillas de brief y storyboard, y el proyecto de una intro de 20 s en HyperFrames |
 | `segundo-cerebro/` | la estructura del 2do cerebro: agente de 4 archivos, journal diario, bóveda con índice y backup en GitHub |
+| `claude-code-desde-cero/` | la guía del curso de Claude Code desde cero, los 12 prompts del video, el paso a paso de GitHub y la carpeta del agente investigador, con sus instrucciones y su skill |
 | `figma-claude-code/` | descubrir tu marca sin saber de diseño, conectar Claude Code a Figma gratis y el manual en Figma |
 | `curso-agentes/` | el asistente personal del curso: `AGENTS.md`, 4 skills propias, herramientas de Gmail, Calendar y Sheets, y los pasos para conectar Google y un tablero |
 | `fable-5-2/` | los prompts de las demos 3D, una plantilla y el código de las 6 demos (tocadiscos y grúa en Fable 5.2, Opus 5.5 y Sonnet 5.5), con un script que baja las texturas de Poly Haven |
