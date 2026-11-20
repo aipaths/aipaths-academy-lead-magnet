@@ -1,6 +1,6 @@
 # Curso de Claude Code desde cero: la guía
 
-> Viene del video **[Curso de Claude Code desde cero 2027 (sin saber programar)](VIDEO_URL_PENDIENTE)**.
+> Viene del video **[Curso de Claude Code desde cero 2027 (sin saber programar)](https://www.youtube.com/watch?v=O-PwfY1qSQ0&list=PLItELtCfBA39BbCy0gS8eO2OGn5xEO_cB)**.
 > Más videos con su parte del pack: `../../README.md` → "¿Venís de un video?".
 
 Lo que prometo en el video: dónde bajar la app, los conceptos más importantes, todos los prompts y los archivos del agente investigador. El paso a paso de la cuenta de GitHub está aparte, en `PASO-A-PASO-GITHUB.md`.
